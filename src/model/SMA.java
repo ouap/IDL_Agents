@@ -57,8 +57,12 @@ public class SMA extends Observable {
 			}
 
 			Thread.sleep(vitesse);
+			System.out.println("Tour " + i);
 			notifyObservers();
 		}
 	}
 
+	public List<Agent> getAgents() {
+		return agents;
+	}
 }
