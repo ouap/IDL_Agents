@@ -32,4 +32,8 @@ public class Cellule {
 		return agent == null ? true : false;
 	}
 
+	public void clear() {
+		agent = null;
+	}
+
 }

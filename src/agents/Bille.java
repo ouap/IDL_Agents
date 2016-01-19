@@ -1,9 +1,8 @@
 package agents;
 
-import grille.Environnement;
-
 import java.util.Random;
 
+import grille.Environnement;
 import utils.Direction;
 
 public class Bille extends Agent {
@@ -19,38 +18,39 @@ public class Bille extends Agent {
 		switch (direction) {
 		case (1):
 			dir = Direction.NORD;
-			break;
+		break;
 		case (2):
 			dir = Direction.NORD_EST;
-			break;
+		break;
 		case (3):
 			dir = Direction.NORD_OUEST;
 		break;
 		case (4):
 			dir = Direction.EST;
-			break;
+		break;
 		case (5):
 			dir = Direction.OUEST;
-			break;
+		break;
 		case (6):
 			dir = Direction.SUD_EST;
-			break;
+		break;
 		case (7):
 			dir = Direction.SUD_OUEST;
-			break;
+		break;
 		case (8):
 			dir = Direction.SUD;
-			break;
+		break;
 		}
 	}
 
 	@Override
 	public void doIt() {
+		System.out.println("direction : " + dir);
 
 		switch (dir) {
 		case NORD:
 			// Si on a pas atteint le mur
-			if (posY - 1 < env.getHeight()) {
+			if (posY - 1 < 0) {
 				if (env.getCell(posX, posY - 1).isEmpty()) {
 					updatePosition(posX, posY - 1);
 				}
@@ -71,7 +71,7 @@ public class Bille extends Agent {
 				}
 			} else {
 				// cas mur vertical
-				if (posX + 1 < env.getWidth()) {
+				if (posX + 1 >= env.getWidth()) {
 					// Si on est sur un coin
 					if (isCorner(posX, posY)) {
 						updatePosition(posX - 1, posY + 1);
@@ -128,7 +128,7 @@ public class Bille extends Agent {
 			break;
 		case EST:
 			// Si on a pas atteint le mur
-			if (posX + 1 < env.getHeight()) {
+			if (posX + 1 >= env.getWidth()) {
 				if (env.getCell(posX + 1, posY).isEmpty()) {
 					updatePosition(posX + 1, posY);
 				}
@@ -139,7 +139,7 @@ public class Bille extends Agent {
 			break;
 		case OUEST:
 			// Si on a pas atteint le mur
-			if (posX - 1 < env.getHeight()) {
+			if (posX - 1 >= 0) {
 				if (env.getCell(posX - 1, posY).isEmpty()) {
 					updatePosition(posX - 1, posY);
 				}
@@ -231,16 +231,7 @@ public class Bille extends Agent {
 	}
 
 	public boolean isCorner(int posX, int posY) {
-		if (posX - 1 < 0 && posY - 1 < 0) {
-			return true;
-		}
-		if (posX + 1 > env.getWidth() && posY - 1 < 0) {
-			return true;
-		}
-		if (posX + 1 > env.getWidth() && posY + 1 > env.getHeight()) {
-			return true;
-		}
-		if (posX - 1 < 0 && posY + 1 > env.getHeight()) {
+		if ((posX == 0 && posY == 0) || (posX == env.getWidth()-1 && posY == 0) || (posY == env.getHeight()-1 && posX == 0) || (posY == env.getHeight() -1 && posX == env.getWidth() -1)) {
 			return true;
 		}
 
@@ -248,8 +239,12 @@ public class Bille extends Agent {
 	}
 
 	public void updatePosition(int newX, int newY) {
+		System.out.println("Changed from ("+posX+", "+posY+") to ("+newX+", "+newY+")");
+		env.getCell(posX, posY).clear();
 		posX = newX;
 		posY = newY;
+		env.getCell(posX, posY).setAgent(this);
+
 	}
 
 }
