@@ -1,6 +1,6 @@
-package Agents;
+package agents;
 
-import Grille.Environnement;
+import grille.Environnement;
 import utils.Direction;
 
 public abstract class Agent {
@@ -11,10 +11,11 @@ public abstract class Agent {
 
 	public abstract void doIt();
 
-	public int getX(){
+	public int getX() {
 		return posX;
 	}
-	public int getY(){
+
+	public int getY() {
 		return posY;
 	}
 
