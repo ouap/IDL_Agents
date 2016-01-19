@@ -1,7 +1,5 @@
 package model;
 
-import grille.Environnement;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -10,17 +8,22 @@ import java.util.Random;
 
 import agents.Agent;
 import agents.Bille;
+import grille.Environnement;
 
 public class SMA extends Observable {
 	public Environnement env;
 	private int nbAgents;
+	private int nbTours;
 	private int vitesse;
+	private boolean equit;
 	List<Agent> agents = new ArrayList<Agent>();
 
-	public SMA(int nbAgents, int vitesse, int height, int length) {
+	public SMA(int nbAgents,int nbTours, int vitesse, int height, int length, boolean equit) {
 		super();
 		this.nbAgents = nbAgents;
 		this.vitesse = vitesse;
+		this.nbTours=nbTours;
+		this.equit = equit;
 		env = new Environnement(height, length);
 		init(nbAgents, height, length);
 	}
@@ -42,11 +45,12 @@ public class SMA extends Observable {
 		}
 	}
 
-	public void run(int nbTour, int vitesse) throws InterruptedException {
+	public void run() throws InterruptedException {
 
-		for (int i = 0; i < nbTour; i++) {
-
-			Collections.shuffle(agents);
+		for (int i = 0; i < nbTours; i++) {
+			if (equit) {
+				Collections.shuffle(agents);
+			}
 
 			for (Agent a : agents) {
 				a.doIt();

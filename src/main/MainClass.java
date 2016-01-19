@@ -7,8 +7,8 @@ import vue.View;
 public class MainClass {
 
 	public static void main(String[] args) throws InterruptedException {
-		SMA simulation = new SMA(5, 1000, 800, 600);
+		SMA simulation = new SMA(5,1000, 1000, 800, 600, true);
 		View v = new GraphicView(simulation);
-		simulation.run(10, 1000);
+		simulation.run();
 	}
 }
