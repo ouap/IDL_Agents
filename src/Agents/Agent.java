@@ -1,3 +1,7 @@
+package Agents;
+
+import Grille.Environnement;
+import utils.Direction;
 
 public abstract class Agent {
 	int posX;

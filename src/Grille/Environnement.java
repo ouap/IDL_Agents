@@ -1,3 +1,4 @@
+package Grille;
 public class Environnement {
 	Cellule [][] grille;
 	boolean thorique;

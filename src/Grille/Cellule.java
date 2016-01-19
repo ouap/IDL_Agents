@@ -1,3 +1,6 @@
+package Grille;
+
+import Agents.Agent;
 
 public class Cellule {
 	int x;
