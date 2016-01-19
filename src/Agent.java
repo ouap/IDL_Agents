@@ -1,17 +1,17 @@
 
 public abstract class Agent {
-	int posx;
-	int posy;
+	int posX;
+	int posY;
 	Environnement env;
 	Direction dir;
 
 	abstract void doIt();
 
 	public int getX(){
-		return posx;
+		return posX;
 	}
 	public int getY(){
-		return posy;
+		return posY;
 	}
 
 }

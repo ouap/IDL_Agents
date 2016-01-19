@@ -14,6 +14,7 @@ public class SMA extends Observable{
 		this.nbAgents = nbAgents;
 		this.vitesse = vitesse;
 		env = new Environnement(height, length);
+		init(nbAgents);
 	}
 
 
@@ -22,13 +23,14 @@ public class SMA extends Observable{
 
 		for (int i = 0 ; i < nbBille ; i++) {
 			int x, y;
+
 			do {
 				y = r.nextInt(env.grille.length);
 				x = r.nextInt(env.grille[0].length);
-			} while (env.grille[x][y] != null);
+			} while (env.grille[x][y].getAgent() != null);
 
-			env.grille[x][y] = new Bille(env, x, y);
-			agents.add(env.grille[x][y]);
+			env.grille[x][y].agent = new Bille(env, x, y);
+			agents.add(env.grille[x][y].agent);
 		}
 	}
 
@@ -38,6 +40,7 @@ public class SMA extends Observable{
 			for (Agent a : agents) {
 				a.doIt();
 			}
+
 			Thread.sleep(vitesse);
 			notifyObservers();
 		}

@@ -1,11 +1,10 @@
 import java.util.Observable;
 
 public class TextView extends View{
-
+	Environnement env;
 
 	public TextView(Environnement env) {
-
-		// TODO Auto-generated constructor stub
+		this.env = env;
 	}
 
 	@Override
