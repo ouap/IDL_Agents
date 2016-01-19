@@ -10,7 +10,6 @@ import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.border.Border;
 
 import model.SMA;
@@ -18,8 +17,6 @@ import model.SMA;
 public class GraphicView extends View implements Observer {
 
 	private JButton[][] cells;
-
-	private JPanel jp;
 
 	private SMA sma;
 
@@ -30,13 +27,12 @@ public class GraphicView extends View implements Observer {
 		sma.addObserver(this);
 
 		JFrame f = new JFrame("Chambre d'evolution");
-		jp = new JPanel();
 		initGrid();
 
-		jp.setLayout(new BoxLayout(jp, BoxLayout.Y_AXIS));
-		jp.add(this);
+		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		System.out.println("Added this to jp");
-		f.add(jp);
+		f.add(this);
+		f.pack();
 		System.out.println("Added jp to f");
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		System.out.println("setDefaultCloseOperation");
