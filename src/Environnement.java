@@ -3,7 +3,9 @@ public class Environnement {
 
 	public Environnement(int x, int y){
 		grille = new Agent[x][y];
+		init();
 	}
+
 
 	public void init(){
 		for (int i = 0 ; i< grille.length ; i++) {
