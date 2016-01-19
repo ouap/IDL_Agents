@@ -9,7 +9,7 @@ public abstract class Agent {
 	Environnement env;
 	Direction dir;
 
-	abstract void doIt();
+	public abstract void doIt();
 
 	public int getX(){
 		return posX;

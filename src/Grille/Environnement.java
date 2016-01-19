@@ -1,6 +1,6 @@
 package Grille;
 public class Environnement {
-	Cellule [][] grille;
+	public Cellule [][] grille;
 	boolean thorique;
 
 	public Environnement(int x, int y){

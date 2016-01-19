@@ -22,6 +22,9 @@ public class Cellule {
 		return agent;
 	}
 
+	public void setAgent(Agent a){
+		agent = a;
+	}
 	public boolean isEmpty(){
 		return agent == null ? true : false;
 	}

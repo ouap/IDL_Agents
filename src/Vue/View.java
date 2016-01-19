@@ -1,12 +1,12 @@
 package Vue;
 import java.util.Observer;
 
-import javax.swing.JFrame;
+import javax.swing.JPanel;
 
-import Grille.Environnement;
+import model.SMA;
 
-public abstract class View extends JFrame implements Observer{
-	Environnement env;
+public abstract class View extends JPanel implements Observer{
+	SMA sma;
 
 
 

@@ -1,7 +1,7 @@
 package Vue;
 import java.util.Observable;
 
-import Grille.Environnement;
+import model.SMA;
 
 public class TextView extends View{
 	/**
@@ -9,8 +9,8 @@ public class TextView extends View{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public TextView(Environnement env) {
-		super.env = env;
+	public TextView(SMA sma) {
+		super.sma = sma;
 	}
 
 	@Override

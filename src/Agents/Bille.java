@@ -14,7 +14,7 @@ public class Bille extends Agent {
 	}
 
 	@Override
-	void doIt() {
+	public void doIt() {
 
 		switch (dir) {
 		case NORD:

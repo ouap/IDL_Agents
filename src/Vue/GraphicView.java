@@ -2,7 +2,7 @@ package Vue;
 
 import java.util.Observable;
 
-import Grille.Environnement;
+import model.SMA;
 
 public class GraphicView extends View{
 
@@ -11,8 +11,8 @@ public class GraphicView extends View{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public  GraphicView(Environnement env) {
-		super.env = env;
+	public  GraphicView(SMA sma) {
+		super.sma = sma;
 	}
 
 
