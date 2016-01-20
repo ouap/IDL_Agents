@@ -54,7 +54,11 @@ public class Bille extends Agent {
 				if (env.getCell(posX, posY - 1).isEmpty()) {
 					updatePosition(posX, posY - 1);
 				}
-			} else {
+				else {
+					dir = Direction.SUD;
+					updatePosition(posX, posY + 1);
+				}
+			}else {
 				dir = Direction.SUD;
 				updatePosition(posX, posY + 1);
 			}
@@ -100,7 +104,6 @@ public class Bille extends Agent {
 					updatePosition(posX - 1, posY - 1);
 				} else {
 					dir = Direction.SUD_EST;
-
 					updatePosition(posX + 1, posY + 1);
 				}
 			} else {
@@ -133,6 +136,10 @@ public class Bille extends Agent {
 				if (env.getCell(posX + 1, posY).isEmpty()) {
 					updatePosition(posX + 1, posY);
 				}
+				else {
+					dir = Direction.OUEST;
+					updatePosition(posX - 1, posY);
+				}
 			} else {
 				dir = Direction.OUEST;
 				updatePosition(posX - 1, posY);
@@ -143,6 +150,10 @@ public class Bille extends Agent {
 			if (posX - 1 >= 0) {
 				if (env.getCell(posX - 1, posY).isEmpty()) {
 					updatePosition(posX - 1, posY);
+				}
+				else {
+					dir = Direction.EST;
+					updatePosition(posX + 1, posY);
 				}
 			} else {
 				dir = Direction.EST;
@@ -222,6 +233,10 @@ public class Bille extends Agent {
 			if (posY + 1 < env.getHeight()) {
 				if (env.getCell(posX, posY + 1).isEmpty()) {
 					updatePosition(posX, posY + 1);
+				}
+				else {
+					dir = Direction.NORD;
+					updatePosition(posX, posY - 1);
 				}
 			} else {
 				dir = Direction.NORD;

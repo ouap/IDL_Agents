@@ -28,5 +28,9 @@ public class Environnement {
 	public int getWidth() {
 		return grille.length;
 	}
+	
+	public Cellule[][] getGrid()	{
+		return this.grille;
+	}
 
 }

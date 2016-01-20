@@ -2,12 +2,20 @@ package vue;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Graphics;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JPanel;
 import javax.swing.WindowConstants;
+import javax.swing.border.Border;
 
+import agents.Agent;
 import model.SMA;
 
 public class GraphicView extends View implements Observer {
@@ -17,77 +25,83 @@ public class GraphicView extends View implements Observer {
 	 */
 	private static final long serialVersionUID = 1L;
 	private SMA sma;
+	private JPanel p;
+	private JButton[][] grid;
 
 	public GraphicView(SMA sma, String name) {
 		super();
 		this.sma = sma;
 		sma.addObserver(this);
 
-		System.out.println(sma.showGrid());
-		System.out.println(sma.getEnv().getHeight());
-		System.out.println(sma.getAgentSize());
-
-
+		this.initGrid();
+		
+		this.p = new JPanel();
+		p.setLayout(new BoxLayout(this.p, BoxLayout.Y_AXIS));
+		
 		setSize(new Dimension(sma.getEnv().getWidth() * sma.getAgentSize(), sma.getEnv().getHeight()*sma.getAgentSize()+22));
-		//setPreferredSize(new Dimension(sma.getEnv().getWidth() * sma.getAgentSize(), sma.getEnv().getHeight()*sma.getAgentSize()));
 
+		
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setVisible(true);
-		paint(getGraphics());
 
 	}
 
-	private void paintAgents(Graphics graphics) {
-		int agentSize = sma.getAgentSize();
+	public void initGrid(){
 
+		int size = sma.getEnv().getGrid().length;
+		this.grid = new JButton[size][size];
 
-		for (int x = 0; x < sma.getEnv().getWidth(); x++) {
-			for (int y = 0; y < sma.getEnv().getHeight(); y++) {
-				if (!sma.getEnv().getCell(x, y).isEmpty()) {
-					graphics.fillRect(x*agentSize, (y*agentSize) + 22 , agentSize, agentSize);
+		this.setLayout(new GridLayout(this.grid.length, this.grid.length));
+
+		for(int i = 0 ; i < size; i++){
+			for( int j = 0; j < size; j++){
+				final int x = i;
+				final int y = j;
+				grid[i][j] = new JButton();
+
+				this.grid[i][j].setPreferredSize(new Dimension(sma.getAgentSize(), sma.getAgentSize()));
+
+				grid[i][j].addActionListener(new ActionListener(){
+
+					@Override
+					public void actionPerformed(ActionEvent arg0) {
+						System.out.println(" pos : " + sma.getEnv().getCell(x, y).getAgent().getX() + " " + sma.getEnv().getCell(x, y).getAgent().getY() + "; dir : " + sma.getEnv().getCell(x, y).getAgent().getDir());
+					}
+
+				});
+				
+				if (!sma.showGrid())	{
+					Border border = BorderFactory.createEmptyBorder();
+					grid[i][j].setBorder(border);
 				}
+				this.add(grid[i][j]);
 			}
+
 		}
 
-
+		this.actualiseGrid();
 	}
 
-	private void paintGrid(Graphics graphics) {
-		int width = sma.getEnv().getWidth();
-		int height = sma.getEnv().getHeight();
-		int agentSize = sma.getAgentSize();
+	public void actualiseGrid(){
+		for(int i = 0 ; i < this.grid.length; i++){
+			for(int j = 0; j < this.grid[i].length; j++){
+				if(sma.getEnv().getGrid()[i][j].isEmpty()){
+					grid[i][j].setBackground(Color.WHITE);
+				}else{
+					grid[i][j].setBackground(Color.BLACK);
+				}
 
-		if (sma.showGrid()) {
-			graphics.setColor(Color.BLACK);
 
-			for (int x = 0; x < width; x++) {
-				graphics.drawLine(x*agentSize,0 + 22, x * agentSize, (height * agentSize) + 22);
-			}
 
-			for (int y = 0; y < height; y++) {
-				graphics.drawLine(0, (y * agentSize) + 22, width * agentSize, (y * agentSize) + 22);
 			}
 
 		}
-	}
-
-	@Override
-	public void paint(Graphics graphics) {
-		super.paint(graphics);
-
-		if (sma.showGrid()) {
-			paintGrid(graphics);
-		}
-
-		paintAgents(graphics);
-
 	}
 
 	@Override
 	public void update(Observable o, Object arg) {
-		getContentPane().removeAll();
-		revalidate();
+		actualiseGrid();
 		repaint();
 	}
 

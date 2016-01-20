@@ -18,5 +18,9 @@ public abstract class Agent {
 	public int getY() {
 		return posY;
 	}
+	
+	public Direction getDir()		{
+		return dir;
+	}
 
 }

@@ -60,7 +60,6 @@ public class SMA extends Observable {
 				a.doIt();
 			}
 
-			System.out.println("Tour " + i);
 			setChanged();
 			notifyObservers();
 			Thread.sleep(vitesse);
