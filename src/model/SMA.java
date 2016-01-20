@@ -17,6 +17,7 @@ public class SMA extends Observable {
 	private int agentSize;
 	private int vitesse;
 	private boolean equit;
+	private boolean toric;
 	private boolean showGrid;
 	List<Agent> agents = new ArrayList<Agent>();
 
@@ -28,15 +29,16 @@ public class SMA extends Observable {
 		this.nbTours=nbTours;
 		this.equit = equit;
 		this.showGrid = showGrid;
+		toric = false;
 		this.agentSize = agentSize;
 		env = new Environnement(height, length);
 		init(nbAgents, height, length);
 	}
 
-	public void init(int nbBille, int height, int lenght) {
+	public void init(int nbAgent, int height, int lenght) {
 		Random r = new Random();
 
-		for (int i = 0; i < nbBille; i++) {
+		for (int i = 0; i < nbAgent; i++) {
 			int x, y;
 			do {
 				y = r.nextInt(env.grille.length) % lenght;
@@ -52,6 +54,7 @@ public class SMA extends Observable {
 	public void run() throws InterruptedException {
 
 		for (int i = 0; i < nbTours; i++) {
+
 			if (equit) {
 				Collections.shuffle(agents);
 			}
@@ -77,7 +80,9 @@ public class SMA extends Observable {
 	public int getAgentSize(){
 		return agentSize;
 	}
-
+	public boolean isToric(){
+		return toric;
+	}
 	public boolean showGrid() {
 		// TODO Auto-generated method stub
 		return showGrid;

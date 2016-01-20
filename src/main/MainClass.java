@@ -7,9 +7,9 @@ import vue.View;
 public class MainClass {
 
 	public static void main(String[] args) throws InterruptedException {
-		SMA simulation = new SMA(500, 100, 300, 500, 500, 5, false, true);
+		SMA simulation = new SMA(200, 2000, 40, 100, 100, 7, false, true);
+		//NbAgents, nbTours, vitesse, height, width, agentsize, showGrid, equit
 		View v = new GraphicView(simulation, "Chambre d'evolution");
 		simulation.run();
-
 	}
 }

@@ -6,8 +6,9 @@ import java.awt.Graphics;
 import java.util.Observable;
 import java.util.Observer;
 
-import javax.swing.WindowConstants;
+import javax.swing.JFrame;
 
+import agents.Agent;
 import model.SMA;
 
 public class GraphicView extends View implements Observer {
@@ -21,33 +22,26 @@ public class GraphicView extends View implements Observer {
 	public GraphicView(SMA sma, String name) {
 		super();
 		this.sma = sma;
-		sma.addObserver(this);
-
-		System.out.println(sma.showGrid());
-		System.out.println(sma.getEnv().getHeight());
-		System.out.println(sma.getAgentSize());
+		this.sma.addObserver(this);
 
 
-		setSize(new Dimension(sma.getEnv().getWidth() * sma.getAgentSize(), sma.getEnv().getHeight()*sma.getAgentSize()+22));
+		setTitle(name);
+		setSize(new Dimension(sma.getEnv().getWidth() * sma.getAgentSize(), sma.getEnv().getHeight()*sma.getAgentSize() + 22));
 		//setPreferredSize(new Dimension(sma.getEnv().getWidth() * sma.getAgentSize(), sma.getEnv().getHeight()*sma.getAgentSize()));
-
-		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		setBackground(Color.white);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setResizable(false);
 		setLocationRelativeTo(null);
 		setVisible(true);
-		paint(getGraphics());
 
 	}
 
 	private void paintAgents(Graphics graphics) {
 		int agentSize = sma.getAgentSize();
 
-
-		for (int x = 0; x < sma.getEnv().getWidth(); x++) {
-			for (int y = 0; y < sma.getEnv().getHeight(); y++) {
-				if (!sma.getEnv().getCell(x, y).isEmpty()) {
-					graphics.fillRect(x*agentSize, (y*agentSize) + 22 , agentSize, agentSize);
-				}
-			}
+		for (Agent a : sma.getAgents()) {
+			graphics.setColor(a.getColor());
+			graphics.fillRect(a.getX()*agentSize, (a.getY()*agentSize) + 22 , agentSize, agentSize);
 		}
 
 
@@ -86,9 +80,8 @@ public class GraphicView extends View implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
-		getContentPane().removeAll();
 		revalidate();
-		repaint();
+		paint(getGraphics());
 	}
 
 }

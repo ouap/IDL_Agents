@@ -1,5 +1,6 @@
 package agents;
 
+import java.awt.Color;
 import java.util.Random;
 
 import grille.Environnement;
@@ -12,6 +13,8 @@ public class Bille extends Agent {
 		super.posX = posx;
 		super.posY = posy;
 		Random r = new Random();
+
+		color = Color.getColor(null, r.nextInt());
 
 		int direction = r.nextInt((8 - 1) + 1) + 1;
 
@@ -103,7 +106,6 @@ public class Bille extends Agent {
 					updatePosition(posX - 1, posY - 1);
 				} else {
 					dir = Direction.SUD_EST;
-
 					updatePosition(posX + 1, posY + 1);
 				}
 			} else {
