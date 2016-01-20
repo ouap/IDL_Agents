@@ -11,19 +11,24 @@ import agents.Bille;
 import grille.Environnement;
 
 public class SMA extends Observable {
-	public Environnement env;
+	private Environnement env;
 	private int nbAgents;
 	private int nbTours;
+	private int agentSize;
 	private int vitesse;
 	private boolean equit;
+	private boolean showGrid;
 	List<Agent> agents = new ArrayList<Agent>();
 
-	public SMA(int nbAgents,int nbTours, int vitesse, int height, int length, boolean equit) {
+	public SMA(int nbAgents,int nbTours, int vitesse, int height, int length, int agentSize, boolean showGrid, boolean equit) {
 		super();
+		System.out.println(""+height+ "  "+length);
 		this.nbAgents = nbAgents;
 		this.vitesse = vitesse;
 		this.nbTours=nbTours;
 		this.equit = equit;
+		this.showGrid = showGrid;
+		this.agentSize = agentSize;
 		env = new Environnement(height, length);
 		init(nbAgents, height, length);
 	}
@@ -55,14 +60,26 @@ public class SMA extends Observable {
 				a.doIt();
 			}
 
-			Thread.sleep(vitesse);
 			System.out.println("Tour " + i);
 			setChanged();
 			notifyObservers();
+			Thread.sleep(vitesse);
 		}
 	}
 
 	public List<Agent> getAgents() {
 		return agents;
+	}
+
+	public Environnement getEnv(){
+		return env;
+	}
+	public int getAgentSize(){
+		return agentSize;
+	}
+
+	public boolean showGrid() {
+		// TODO Auto-generated method stub
+		return showGrid;
 	}
 }
