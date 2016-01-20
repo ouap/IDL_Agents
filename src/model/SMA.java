@@ -39,7 +39,6 @@ public class SMA extends Observable {
 				System.out.println("y : " + y + " - x : " + x);
 			} while (!env.grille[x][y].isEmpty());
 
-			System.out.println("We set the cell !");
 			env.getCell(x, y).setAgent(new Bille(env, x, y));
 			agents.add(env.getCell(x, y).getAgent());
 		}
@@ -58,6 +57,7 @@ public class SMA extends Observable {
 
 			Thread.sleep(vitesse);
 			System.out.println("Tour " + i);
+			setChanged();
 			notifyObservers();
 		}
 	}

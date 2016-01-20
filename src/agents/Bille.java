@@ -45,12 +45,10 @@ public class Bille extends Agent {
 
 	@Override
 	public void doIt() {
-		System.out.println("direction : " + dir);
-
 		switch (dir) {
 		case NORD:
 			// Si on a pas atteint le mur
-			if (posY - 1 < 0) {
+			if (posY - 1 >= 0) {
 				if (env.getCell(posX, posY - 1).isEmpty()) {
 					updatePosition(posX, posY - 1);
 				}
@@ -94,7 +92,7 @@ public class Bille extends Agent {
 			break;
 		case NORD_OUEST:
 			// Si on a pas atteint le mur
-			if (posX - 1 >= 0 && posY - 1 >= 0) {
+			if (posX - 1 > 0 && posY - 1 > 0) {
 				// Si la case ou l'on va est vide
 				if (env.getCell(posX - 1, posY - 1).isEmpty()) {
 					updatePosition(posX - 1, posY - 1);
@@ -128,7 +126,7 @@ public class Bille extends Agent {
 			break;
 		case EST:
 			// Si on a pas atteint le mur
-			if (posX + 1 >= env.getWidth()) {
+			if (posX + 1 < env.getWidth()) {
 				if (env.getCell(posX + 1, posY).isEmpty()) {
 					updatePosition(posX + 1, posY);
 				}
@@ -239,7 +237,6 @@ public class Bille extends Agent {
 	}
 
 	public void updatePosition(int newX, int newY) {
-		System.out.println("Changed from ("+posX+", "+posY+") to ("+newX+", "+newY+")");
 		env.getCell(posX, posY).clear();
 		posX = newX;
 		posY = newY;

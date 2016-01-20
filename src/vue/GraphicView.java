@@ -10,6 +10,7 @@ import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.border.Border;
 
 import model.SMA;
@@ -19,6 +20,8 @@ public class GraphicView extends View implements Observer {
 	private JButton[][] cells;
 
 	private SMA sma;
+	
+	private JPanel jp;
 
 	private static final long serialVersionUID = 1L;
 
@@ -27,34 +30,26 @@ public class GraphicView extends View implements Observer {
 		sma.addObserver(this);
 
 		JFrame f = new JFrame("Chambre d'evolution");
+		jp = new JPanel();
+		f.setPreferredSize(new Dimension(1200, 800));
 		initGrid();
-
-		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		System.out.println("Added this to jp");
-		f.add(this);
+		
+		jp.setLayout(new BoxLayout(jp, BoxLayout.Y_AXIS));
+		jp.add(this);
+		
+		f.add(jp);
 		f.pack();
-		System.out.println("Added jp to f");
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		System.out.println("setDefaultCloseOperation");
 		f.setVisible(true);
 	}
 
 	public void initGrid() {
-
-		cells = new JButton[sma.env.grille.length][sma.env.grille[0].length];
-
-		setLayout(new GridLayout(cells.length, cells[0].length));
+		this.cells = new JButton[sma.env.grille.length][sma.env.grille[0].length];
+		this.setLayout(new GridLayout(this.cells.length, this.cells[0].length));
 
 		for (int i = 0; i < sma.env.grille.length; i++) {
 			for (int j = 0; j < sma.env.grille[0].length; j++) {
-				final int x = i;
-				final int y = j;
 				cells[i][j] = new JButton();
-
-				cells[i][j].setPreferredSize(new Dimension(sma.env.grille.length, sma.env.grille[0].length));
-
-				Border border = BorderFactory.createLineBorder(Color.DARK_GRAY);
-				cells[i][j].setBorder(border);
 
 				this.add(cells[i][j]);
 			}
@@ -70,7 +65,6 @@ public class GraphicView extends View implements Observer {
 				} else {
 					cells[i][j].setBackground(Color.BLACK);
 				}
-				System.out.println("Cell " + i + " " + j);
 			}
 		}
 	}
@@ -79,7 +73,6 @@ public class GraphicView extends View implements Observer {
 	public void update(Observable o, Object arg) {
 		actualiseGrid();
 		repaint();
-		System.out.println("Update !");
 	}
 
 }
