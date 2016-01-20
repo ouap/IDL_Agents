@@ -45,6 +45,8 @@ public class Bille extends Agent {
 
 	@Override
 	public void doIt() {
+		System.out.println("PosInitiale : + (" + posX + ", "+posY +")   Direction : "+ dir);
+
 		switch (dir) {
 		case NORD:
 			// Si on a pas atteint le mur
@@ -78,7 +80,7 @@ public class Bille extends Agent {
 						updatePosition(posX - 1, posY - 1);
 						dir = Direction.NORD_OUEST;
 					}
-				} else if (posY - 1 >= 0) { // Cas mur horizontal
+				} else if (posY - 1 < 0) { // Cas mur horizontal
 					// Si on est sur un coin
 					if (isCorner(posX, posY)) {
 						updatePosition(posX - 1, posY + 1);
@@ -92,12 +94,13 @@ public class Bille extends Agent {
 			break;
 		case NORD_OUEST:
 			// Si on a pas atteint le mur
-			if (posX - 1 > 0 && posY - 1 > 0) {
+			if (posX - 1 >= 0 && posY - 1 >= 0) {
 				// Si la case ou l'on va est vide
 				if (env.getCell(posX - 1, posY - 1).isEmpty()) {
 					updatePosition(posX - 1, posY - 1);
 				} else {
 					dir = Direction.SUD_EST;
+
 					updatePosition(posX + 1, posY + 1);
 				}
 			} else {
@@ -148,7 +151,7 @@ public class Bille extends Agent {
 			break;
 		case SUD_EST:
 			// Si on a pas atteint le mur
-			if (posX + 1 > env.getWidth() && posY + 1 > env.getHeight()) {
+			if (posX + 1 < env.getWidth() && posY + 1 < env.getHeight()) {
 				// Si la case ou l'on va est vide
 				if (env.getCell(posX + 1, posY + 1).isEmpty()) {
 					updatePosition(posX + 1, posY + 1);
@@ -158,7 +161,7 @@ public class Bille extends Agent {
 				}
 			} else {
 				// cas mur vertical
-				if (posX + 1 > env.getWidth()) {
+				if (posX + 1 >= env.getWidth()) {
 					// Si on est sur un coin
 					if (isCorner(posX, posY)) {
 						updatePosition(posX - 1, posY - 1);
@@ -167,7 +170,7 @@ public class Bille extends Agent {
 						updatePosition(posX - 1, posY + 1);
 						dir = Direction.SUD_OUEST;
 					}
-				} else if (posY + 1 > env.getHeight()) { // Cas mur horizontal
+				} else if (posY + 1 >= env.getHeight()) { // Cas mur horizontal
 					// Si on est sur un coin
 					if (isCorner(posX, posY)) {
 						updatePosition(posX - 1, posY - 1);
@@ -201,7 +204,7 @@ public class Bille extends Agent {
 						updatePosition(posX + 1, posY + 1);
 						dir = Direction.SUD_EST;
 					}
-				} else if (posY + 1 > env.getHeight()) { // Cas mur horizontal
+				} else if (posY + 1 >= env.getHeight()) { // Cas mur horizontal
 					// Si on est sur un coin
 					if (isCorner(posX, posY)) {
 						updatePosition(posX + 1, posY - 1);
@@ -237,6 +240,7 @@ public class Bille extends Agent {
 	}
 
 	public void updatePosition(int newX, int newY) {
+		System.out.println("NewPos : + (" + newX + ", "+newY +")   Direction : "+ dir);
 		env.getCell(posX, posY).clear();
 		posX = newX;
 		posY = newY;
