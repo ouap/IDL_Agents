@@ -26,4 +26,14 @@ public abstract class Agent {
 		return color;
 	}
 
+	public void updatePosition(int newX, int newY) {
+		System.out.println("NewPos : + (" + newX + ", "+newY +")   Direction : "+ dir);
+		env.getCell(posX, posY).clear();
+		posX = newX;
+		posY = newY;
+		env.getCell(posX, posY).setAgent(this);
+	}
+
+	public abstract String type();
+
 }

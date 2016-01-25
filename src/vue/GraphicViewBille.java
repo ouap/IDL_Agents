@@ -8,18 +8,18 @@ import java.util.Observer;
 
 import javax.swing.JFrame;
 
+import Core.SMABille;
 import agents.Agent;
-import model.SMA;
 
-public class GraphicView extends View implements Observer {
+public class GraphicViewBille extends View implements Observer {
 
 	/**
 	 *
 	 */
 	private static final long serialVersionUID = 1L;
-	private SMA sma;
+	private SMABille sma;
 
-	public GraphicView(SMA sma, String name) {
+	public GraphicViewBille(SMABille sma, String name) {
 		super();
 		this.sma = sma;
 		this.sma.addObserver(this);
