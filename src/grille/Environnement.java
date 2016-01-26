@@ -1,11 +1,17 @@
 package grille;
 
+import java.util.List;
+
+import agents.Agent;
+
 public class Environnement {
 	public Cellule[][] grille;
 	boolean thorique;
+	List<Agent> agents;
 
-	public Environnement(int x, int y) {
+	public Environnement(int x, int y, List<Agent> agents) {
 		grille = new Cellule[x][y];
+		this.agents = agents;
 		init();
 	}
 
@@ -17,8 +23,16 @@ public class Environnement {
 		}
 	}
 
+	public boolean isFree(int posX, int posY){
+		return grille[posX][posY].getAgent() == null;
+	}
+
 	public Cellule getCell(int x, int y) {
 		return grille[x][y];
+	}
+
+	public boolean isOutOfBounds(int posX, int posY){
+		return !((posX >= 0 && posX < getWidth()) &&  (posY >= 0 && posY < getHeight()));
 	}
 
 	public int getHeight() {

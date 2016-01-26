@@ -12,6 +12,9 @@ public abstract class Agent {
 	Color color;
 	Direction dir;
 
+	public Agent() {
+		// TODO Auto-generated constructor stub
+	}
 	public abstract void doIt();
 
 	public int getX() {

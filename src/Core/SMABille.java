@@ -1,11 +1,8 @@
 package Core;
 
-import java.util.Collections;
 import java.util.Random;
 
-import agents.Agent;
 import agents.Bille;
-import grille.Environnement;
 
 public class SMABille extends SMA {
 
@@ -20,7 +17,6 @@ public class SMABille extends SMA {
 		super.showGrid = showGrid;
 		super.toric = false;
 		this.agentSize = agentSize;
-		env = new Environnement(height, length);
 		init();
 	}
 
@@ -31,8 +27,8 @@ public class SMABille extends SMA {
 		for (int i = 0; i < nbAgents; i++) {
 			int x, y;
 			do {
-				y = r.nextInt(env.getWidth()) % env.getWidth();
-				x = r.nextInt(env.getHeight()) % env.getHeight();
+				y = r.nextInt(env.getWidth());
+				x = r.nextInt(env.getHeight());
 				System.out.println("y : " + y + " - x : " + x);
 			} while (!env.grille[x][y].isEmpty());
 
@@ -41,25 +37,7 @@ public class SMABille extends SMA {
 		}
 	}
 
-	@Override
-	public void run() throws InterruptedException {
 
-		for (int i = 0; i < nbTours; i++) {
-
-			if (equit) {
-				Collections.shuffle(agents);
-			}
-
-			for (Agent a : agents) {
-				a.doIt();
-			}
-
-			System.out.println("Tour " + i);
-			setChanged();
-			notifyObservers();
-			Thread.sleep(vitesse);
-		}
-	}
 
 
 }

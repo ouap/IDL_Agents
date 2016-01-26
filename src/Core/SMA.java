@@ -1,6 +1,7 @@
 package Core;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Observable;
 
@@ -30,11 +31,30 @@ public abstract class SMA extends Observable{
 		this.showGrid = showGrid;
 		toric = false;
 		this.agentSize = agentSize;
-		env = new Environnement(height, width);
+		env = new Environnement(height, width, agents);
 	}
 
 	public  abstract void init();
-	public abstract void run() throws InterruptedException;
+
+	public void run() throws InterruptedException {
+
+		for (int i = 0; i < nbTours; i++) {
+
+			if (equit) {
+				Collections.shuffle(agents);
+			}
+
+			for (Agent a : agents) {
+				a.doIt();
+			}
+
+			System.out.println("Tour " + i);
+			setChanged();
+			notifyObservers();
+			Thread.sleep(vitesse);
+		}
+	}
+
 
 	public List<Agent> getAgents() {
 		return agents;

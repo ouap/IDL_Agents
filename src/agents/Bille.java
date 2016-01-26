@@ -16,34 +16,8 @@ public class Bille extends Agent {
 
 		color = Color.getColor(null, r.nextInt());
 
-		int direction = r.nextInt((8 - 1) + 1) + 1;
-
-		switch (direction) {
-		case (1):
-			dir = Direction.NORD;
-		break;
-		case (2):
-			dir = Direction.NORD_EST;
-		break;
-		case (3):
-			dir = Direction.NORD_OUEST;
-		break;
-		case (4):
-			dir = Direction.EST;
-		break;
-		case (5):
-			dir = Direction.OUEST;
-		break;
-		case (6):
-			dir = Direction.SUD_EST;
-		break;
-		case (7):
-			dir = Direction.SUD_OUEST;
-		break;
-		case (8):
-			dir = Direction.SUD;
-		break;
-		}
+		int direction = r.nextInt(8);
+		super.dir = Direction.values()[direction] ;
 	}
 
 	@Override
