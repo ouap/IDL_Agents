@@ -14,6 +14,7 @@ public class Shark extends Agent {
 	private int breed;
 	private boolean alive;
 	private int starveShark;
+	private int starve = 0;
 	private Point fishPos = new Point();
 
 	public Shark(Environnement env, int x, int y, int starveShark) {
@@ -22,6 +23,7 @@ public class Shark extends Agent {
 		this.starveShark = starveShark;
 		breed = 0;
 		alive = true;
+		starveShark = 0;
 	}
 
 	@Override
@@ -31,6 +33,12 @@ public class Shark extends Agent {
 		// C'est la maure :(
 		if (!alive) {
 			return;
+		}
+
+		if (starve >= starveShark) {
+			System.out.println("Hello !");
+			env.getCell(posX, posY).clear();
+			alive = false;
 		}
 
 		// Si on atteint le temps limite :
@@ -44,7 +52,8 @@ public class Shark extends Agent {
 				posDir = Direction.getPoint(dir);
 			} while (env.isOutOfBounds(posX + posDir.x, posY + posDir.y) && !env.isFree(posDir.x, posDir.y));
 
-			// On bouge d'abord, après on créé un Shark à la position précédente
+			// On bouge d'abord, après on créé un Shark à la position
+			// précédente
 			updatePosition(posDir.x, posDir.y);
 			env.getCell(posX - posDir.x, posY - posDir.y).setAgent(new Shark(env, posX - posDir.x, posY - posDir.y, 0));
 		}
@@ -53,11 +62,13 @@ public class Shark extends Agent {
 		if (isFishAround()) {
 			env.getCell(fishPos.x, fishPos.y).getAgent().die();
 			updatePosition(fishPos.x, fishPos.y);
-			starveShark = 0;
+			starve = 0;
 		}
 
 		// Sinon on bouge au hasard
 		else {
+			System.out.println("Starve : " + starve);
+			starve++;
 			randomMove();
 		}
 	}
