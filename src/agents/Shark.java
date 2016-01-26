@@ -67,6 +67,7 @@ public class Shark extends Agent {
 		else {
 			System.out.println("Starve : " + starve);
 			starve++;
+			breed++;
 			randomMove();
 		}
 	}
@@ -97,12 +98,11 @@ public class Shark extends Agent {
 	public void die() {
 		env.getCell(posX, posY).clear();
 		env.removeAgent(this);
-		alive=false;
+		alive = false;
 	}
 
 	public static void setBreedTime(int time) {
 		breedTime = time;
 	}
-
 
 }
