@@ -33,7 +33,7 @@ public class SMAWator extends SMA{
 				y = r.nextInt(env.getWidth());
 				x = r.nextInt(env.getHeight());
 				System.out.println("y : " + y + " - x : " + x);
-			} while (!env.grille[x][y].isEmpty());
+			} while (!env.getCell(x, y).isEmpty());
 
 			env.getCell(x, y).setAgent(new Fish(env, x, y));
 			agents.add(env.getCell(x, y).getAgent());
@@ -45,7 +45,7 @@ public class SMAWator extends SMA{
 				y = r.nextInt(env.getWidth());
 				x = r.nextInt(env.getHeight());
 				System.out.println("y : " + y + " - x : " + x);
-			} while (!env.grille[x][y].isEmpty());
+			} while (!env.getCell(x, y).isEmpty());
 
 			env.getCell(x, y).setAgent(new Shark(env, x, y, starveShark));
 			agents.add(env.getCell(x, y).getAgent());

@@ -9,9 +9,7 @@ public class Shark extends Agent{
 	private int starveShark;
 
 	public Shark(Environnement env, int x, int y, int starveShark) {
-		super.env = env;
-		super.posX = x;
-		super.posY = y;
+		super(x, y, env);
 		super.color = color.blue;
 		this.starveShark = starveShark;
 		breed = 0;

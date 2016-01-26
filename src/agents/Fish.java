@@ -1,5 +1,6 @@
 package agents;
 
+import java.awt.Color;
 import java.awt.Point;
 import java.util.Random;
 
@@ -12,10 +13,8 @@ public class Fish extends Agent{
 	private boolean alive;
 
 	public Fish(Environnement env, int x, int y) {
-		super.env = env;
-		super.posX = x;
-		super.posY =y;
-		super.color = color.lightGray;
+		super(x, y, env);
+		color = Color.lightGray;
 		breed = 0;
 		alive = true;
 	}
@@ -53,16 +52,14 @@ public class Fish extends Agent{
 
 	private void randomMove() {
 		Random r = new Random();
-		Point pos;
+		Point posDir;
 		do {
 			int direction = r.nextInt(8);
 			dir = Direction.values()[direction];
-			pos = Direction.getPoint(dir);
-		} while (env.isFree(pos.x, pos.y));
+			posDir = Direction.getPoint(dir);
+		} while (env.isOutOfBounds(posX+ posDir.x, posY + posDir.y) && !env.isFree(posDir.x, posDir.y));
 
-		updatePosition(pos.x, pos.y);
-
-
+		updatePosition(posDir.x, posDir.y);
 	}
 
 

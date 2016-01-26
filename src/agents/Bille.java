@@ -9,9 +9,7 @@ import utils.Direction;
 public class Bille extends Agent {
 
 	public Bille(Environnement env, int posx, int posy) {
-		super.env = env;
-		super.posX = posx;
-		super.posY = posy;
+		super(posx, posy, env);
 		Random r = new Random();
 
 		color = Color.getColor(null, r.nextInt());

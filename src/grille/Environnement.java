@@ -5,9 +5,9 @@ import java.util.List;
 import agents.Agent;
 
 public class Environnement {
-	public Cellule[][] grille;
+	private  Cellule[][] grille;
 	boolean thorique;
-	List<Agent> agents;
+	private List<Agent> agents;
 
 	public Environnement(int x, int y, List<Agent> agents) {
 		grille = new Cellule[x][y];
@@ -24,6 +24,7 @@ public class Environnement {
 	}
 
 	public boolean isFree(int posX, int posY){
+		System.out.println(posX + "   " + posY);
 		return grille[posX][posY].getAgent() == null;
 	}
 
