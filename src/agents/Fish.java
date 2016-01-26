@@ -58,6 +58,7 @@ public class Fish extends Agent {
 	@Override
 	public void die() {
 		env.getCell(posX, posY).clear();
+		env.removeAgent(this);
 		alive=false;
 	}
 

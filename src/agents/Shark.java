@@ -36,9 +36,7 @@ public class Shark extends Agent {
 		}
 
 		if (starve >= starveShark) {
-			System.out.println("Hello !");
-			env.getCell(posX, posY).clear();
-			alive = false;
+			die();
 		}
 
 		// Si on atteint le temps limite :
@@ -97,8 +95,9 @@ public class Shark extends Agent {
 
 	@Override
 	public void die() {
-		// TODO Auto-generated method stub
-
+		env.getCell(posX, posY).clear();
+		env.removeAgent(this);
+		alive=false;
 	}
 
 	public static void setBreedTime(int time) {

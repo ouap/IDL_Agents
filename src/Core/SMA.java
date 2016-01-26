@@ -39,12 +39,13 @@ public abstract class SMA extends Observable{
 	public void run() throws InterruptedException {
 
 		for (int i = 0; i < nbTours; i++) {
-
 			if (equit) {
 				Collections.shuffle(agents);
 			}
 
-			for (Agent a : agents) {
+			List<Agent> dup = new ArrayList<Agent>(agents);
+
+			for (Agent a : dup) {
 				a.doIt();
 			}
 
