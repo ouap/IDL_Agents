@@ -1,8 +1,11 @@
 package agents;
 
-import java.awt.Color;
-
 import grille.Environnement;
+
+import java.awt.Color;
+import java.awt.Point;
+import java.util.Random;
+
 import utils.Direction;
 
 public abstract class Agent {
@@ -17,6 +20,7 @@ public abstract class Agent {
 		posX = x;
 		posY = y;
 	}
+
 	public abstract void doIt();
 
 	public int getX() {
@@ -26,7 +30,8 @@ public abstract class Agent {
 	public int getY() {
 		return posY;
 	}
-	public Environnement getEnv(){
+
+	public Environnement getEnv() {
 		return env;
 	}
 
@@ -34,7 +39,7 @@ public abstract class Agent {
 		return color;
 	}
 
-	public void setDir(Direction dir){
+	public void setDir(Direction dir) {
 		this.dir = dir;
 	}
 
@@ -43,7 +48,7 @@ public abstract class Agent {
 	}
 
 	public void updatePosition(int newX, int newY) {
-		System.out.println("NewPos : + (" + newX + ", "+newY +")   Direction : "+ dir);
+		System.out.println("NewPos : + (" + newX + ", " + newY + ")   Direction : " + dir);
 		env.getCell(posX, posY).clear();
 		posX = newX;
 		posY = newY;
@@ -52,5 +57,16 @@ public abstract class Agent {
 
 	public abstract String type();
 
+	protected void randomMove() {
+		Random r = new Random();
+		Point posDir;
+		do {
+			int direction = r.nextInt(8);
+			dir = Direction.values()[direction];
+			posDir = Direction.getPoint(dir);
+		} while (env.isOutOfBounds(posX + posDir.x, posY + posDir.y) && !env.isFree(posDir.x, posDir.y));
+
+		updatePosition(posDir.x, posDir.y);
+	}
 
 }
