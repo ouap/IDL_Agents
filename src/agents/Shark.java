@@ -1,6 +1,9 @@
 package agents;
 
 import java.awt.Point;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 import grille.Environnement;
@@ -11,7 +14,7 @@ public class Shark extends Agent {
 	private int breed;
 	private boolean alive;
 	private int starveShark;
-	private Point fishPos;
+	private Point fishPos = new Point();
 
 	public Shark(Environnement env, int x, int y, int starveShark) {
 		super(x, y, env);
@@ -60,15 +63,13 @@ public class Shark extends Agent {
 	}
 
 	private boolean isFishAround() {
-		for (int x = -1; x < 1; x++) {
-			for (int y = -1; y < 1; y++) {
-				//System.out.println(posX + x + "   " + (posY + y));
-				if (!env.isOutOfBounds(posX + x, posY + y)) {
-					if (env.getCell(posX + x, posY + y).getAgent() instanceof Fish) {
-						fishPos = new Point(posX + x, posY + x);
-						return true;
-					}
-				}
+
+		List<Point> pointsDir = new ArrayList<Point>(Direction.pointsDir.values());
+		Collections.shuffle(pointsDir);
+		for (Point point : pointsDir) {
+			if (!env.isOutOfBounds(posX + point.x, posY + point.y) && env.getCell(posX + point.x, posY + point.y).getAgent() instanceof Fish) {
+				fishPos.setLocation(posX + point.x, posY + point.y);
+				return true;
 			}
 		}
 		return false;

@@ -55,9 +55,10 @@ public class Fish extends Agent {
 		return "fish";
 	}
 
+	@Override
 	public void die() {
 		env.getCell(posX, posY).clear();
-		env.removeAgent(this);
+		alive=false;
 	}
 
 	public static void setBreedTime(int time) {

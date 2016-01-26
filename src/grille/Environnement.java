@@ -43,8 +43,5 @@ public class Environnement {
 		return grille.length;
 	}
 
-	public void removeAgent(Agent agent) {
-		agents.remove(agent);
-	}
 
 }
