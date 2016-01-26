@@ -2,7 +2,9 @@ package agents;
 
 import java.awt.Color;
 import java.awt.Point;
-import java.util.Random;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import grille.Environnement;
 import utils.Direction;
@@ -38,7 +40,7 @@ public class Fish extends Agent{
 	private boolean isSurrounded() {
 		for (int x = -1; x < 1; x++) {
 			for (int y = -1; y < 1; y++) {
-				System.out.println(posX+x+"   "+ (posY+y));
+				//	System.out.println(posX+x+"   "+ (posY+y));
 				if (!env.isOutOfBounds(posX+x, posY+y)) {
 					if (env.getCell(posX+x, posY+y).getAgent() != null) {
 						return false;
@@ -51,15 +53,15 @@ public class Fish extends Agent{
 
 
 	private void randomMove() {
-		Random r = new Random();
-		Point posDir;
-		do {
-			int direction = r.nextInt(8);
-			dir = Direction.values()[direction];
-			posDir = Direction.getPoint(dir);
-		} while (env.isOutOfBounds(posX+ posDir.x, posY + posDir.y) && !env.isFree(posDir.x, posDir.y));
 
-		updatePosition(posDir.x, posDir.y);
+		List<Point> pointsDir = new ArrayList<Point>( Direction.pointsDir.values());
+		Collections.shuffle(pointsDir);
+		for (Point point : pointsDir) {
+			if (!env.isOutOfBounds(posX+ point.x, posY + point.y) && env.isFree(posX + point.x, posY + point.y)) {
+				updatePosition((posX + point.x), (posY + point.y));
+			}
+		}
+
 	}
 
 

@@ -24,7 +24,6 @@ public class Environnement {
 	}
 
 	public boolean isFree(int posX, int posY){
-		System.out.println(posX + "   " + posY);
 		return grille[posX][posY].getAgent() == null;
 	}
 
