@@ -55,6 +55,8 @@ public class Shark extends Agent {
 			// précédente
 			updatePosition(posDir.x, posDir.y);
 			env.getCell(posDir.x - posX, posDir.y - posY).setAgent(new Shark(env, posDir.x - posX, posDir.y - posY, 0));
+			
+			breed = 0;
 		}
 
 		// Si y'a un poisson, on le nique !!
