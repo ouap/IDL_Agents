@@ -45,6 +45,7 @@ public class Fish extends Agent {
 	}
 
 
+
 	public boolean isAlive(){
 		return alive;
 	}
@@ -54,7 +55,14 @@ public class Fish extends Agent {
 		return "fish";
 	}
 
+	public void die() {
+		env.getCell(posX, posY).clear();
+		env.removeAgent(this);
+	}
+
 	public static void setBreedTime(int time) {
 		breedTime = time;
 	}
+
+
 }

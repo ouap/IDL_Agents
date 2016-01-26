@@ -1,10 +1,9 @@
 package agents;
 
-import grille.Environnement;
-
 import java.awt.Point;
 import java.util.Random;
 
+import grille.Environnement;
 import utils.Direction;
 
 public class Shark extends Agent {
@@ -49,7 +48,7 @@ public class Shark extends Agent {
 
 		// Si y'a un poisson, on le nique !!
 		if (isFishAround()) {
-			env.getCell(fishPos.x, fishPos.y).clear();
+			env.getCell(fishPos.x, fishPos.y).getAgent().die();
 			updatePosition(fishPos.x, fishPos.y);
 			starveShark = 0;
 		}
@@ -63,7 +62,7 @@ public class Shark extends Agent {
 	private boolean isFishAround() {
 		for (int x = -1; x < 1; x++) {
 			for (int y = -1; y < 1; y++) {
-				System.out.println(posX + x + "   " + (posY + y));
+				//System.out.println(posX + x + "   " + (posY + y));
 				if (!env.isOutOfBounds(posX + x, posY + y)) {
 					if (env.getCell(posX + x, posY + y).getAgent() instanceof Fish) {
 						fishPos = new Point(posX + x, posY + x);
@@ -84,7 +83,15 @@ public class Shark extends Agent {
 		return "shark";
 	}
 
+	@Override
+	public void die() {
+		// TODO Auto-generated method stub
+
+	}
+
 	public static void setBreedTime(int time) {
 		breedTime = time;
 	}
+
+
 }

@@ -39,6 +39,7 @@ public abstract class Agent {
 	}
 
 
+
 	public void updatePosition(int newX, int newY) {
 		//System.out.println("NewPos : + (" + newX + ", "+newY +")   Direction : "+ dir);
 		env.getCell(posX, posY).clear();
@@ -60,5 +61,7 @@ public abstract class Agent {
 		}
 
 	}
+
+	public abstract void die();
 
 }

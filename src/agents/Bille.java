@@ -230,5 +230,10 @@ public class Bille extends Agent {
 		return "bille";
 	}
 
+	@Override
+	public void die() {
+		return;
+	}
+
 
 }
