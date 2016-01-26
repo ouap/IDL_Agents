@@ -1,12 +1,13 @@
 package agents;
 
+import grille.Environnement;
+
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-import grille.Environnement;
 import utils.Direction;
 
 public class Shark extends Agent {
@@ -53,7 +54,7 @@ public class Shark extends Agent {
 			// On bouge d'abord, après on créé un Shark à la position
 			// précédente
 			updatePosition(posDir.x, posDir.y);
-			env.getCell(posX - posDir.x, posY - posDir.y).setAgent(new Shark(env, posX - posDir.x, posY - posDir.y, 0));
+			env.getCell(posDir.x - posX, posDir.y - posY).setAgent(new Shark(env, posDir.x - posX, posDir.y - posY, 0));
 		}
 
 		// Si y'a un poisson, on le nique !!
