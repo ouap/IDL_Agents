@@ -1,15 +1,10 @@
 package agents;
 
 import java.awt.Color;
-import java.awt.Point;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 import grille.Environnement;
-import utils.Direction;
 
-public class Fish extends Agent{
+public class Fish extends Agent {
 	private static int breedTime;
 	private int breed;
 	private boolean alive;
@@ -20,7 +15,6 @@ public class Fish extends Agent{
 		breed = 0;
 		alive = true;
 	}
-
 
 	@Override
 	public void doIt() {
@@ -35,7 +29,6 @@ public class Fish extends Agent{
 		randomMove();
 
 	}
-
 
 	private boolean isSurrounded() {
 		for (int x = -1; x < 1; x++) {
@@ -52,29 +45,16 @@ public class Fish extends Agent{
 	}
 
 
-	private void randomMove() {
-
-		List<Point> pointsDir = new ArrayList<Point>( Direction.pointsDir.values());
-		Collections.shuffle(pointsDir);
-		for (Point point : pointsDir) {
-			if (!env.isOutOfBounds(posX+ point.x, posY + point.y) && env.isFree(posX + point.x, posY + point.y)) {
-				updatePosition((posX + point.x), (posY + point.y));
-			}
-		}
-
-	}
-
-
 	public boolean isAlive(){
 		return alive;
 	}
 
 	@Override
-	public String type(){
+	public String type() {
 		return "fish";
 	}
 
-	public static void setBreedTime(int time){
+	public static void setBreedTime(int time) {
 		breedTime = time;
 	}
 }

@@ -1,6 +1,10 @@
 package agents;
 
 import java.awt.Color;
+import java.awt.Point;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import grille.Environnement;
 import utils.Direction;
@@ -17,6 +21,7 @@ public abstract class Agent {
 		posX = x;
 		posY = y;
 	}
+
 	public abstract void doIt();
 
 	public int getX() {
@@ -26,21 +31,13 @@ public abstract class Agent {
 	public int getY() {
 		return posY;
 	}
-	public Environnement getEnv(){
-		return env;
-	}
+
+
 
 	public Color getColor() {
 		return color;
 	}
 
-	public void setDir(Direction dir){
-		this.dir = dir;
-	}
-
-	public void setColor(Color color) {
-		this.color = color;
-	}
 
 	public void updatePosition(int newX, int newY) {
 		//System.out.println("NewPos : + (" + newX + ", "+newY +")   Direction : "+ dir);
@@ -52,5 +49,16 @@ public abstract class Agent {
 
 	public abstract String type();
 
+	protected void randomMove() {
+
+		List<Point> pointsDir = new ArrayList<Point>(Direction.pointsDir.values());
+		Collections.shuffle(pointsDir);
+		for (Point point : pointsDir) {
+			if (!env.isOutOfBounds(posX+ point.x, posY + point.y) && env.isFree(posX + point.x, posY + point.y)) {
+				updatePosition((posX + point.x), (posY + point.y));
+			}
+		}
+
+	}
 
 }
