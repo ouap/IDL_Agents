@@ -47,5 +47,9 @@ public class Environnement {
 		agents.remove(agent);
 	}
 
+	public void addAgent(Agent newAgent) {
+		agents.add(newAgent);
+	}
+
 
 }

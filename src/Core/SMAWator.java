@@ -9,13 +9,12 @@ public class SMAWator extends SMA{
 	private int sharkLife;
 	private int nbFish;
 	private int nbShark;
-	private int starveShark = 8;
-	private int sharkBreedTime = 10;
-	private int fishBreedTime = 10;
+	private int starveShark = 7;
+	private int sharkBreedTime = 12;
+	private int fishBreedTime = 8;
 
-	public SMAWator(int nbTours, int vitesse, int height, int width, int agentSize, boolean showGrid, boolean equit,  int starveShark, int nbFish, int nbShark) {
+	public SMAWator(int nbTours, int vitesse, int height, int width, int agentSize, boolean showGrid, boolean equit, int nbFish, int nbShark) {
 		super((nbFish + nbShark), nbTours,  vitesse,  height,  width,  agentSize,  showGrid,  equit);
-		this.starveShark = starveShark;
 		this.nbFish = nbFish;
 		this.nbShark = nbShark;
 		init();

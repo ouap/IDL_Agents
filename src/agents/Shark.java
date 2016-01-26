@@ -1,13 +1,12 @@
 package agents;
 
-import grille.Environnement;
-
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+import grille.Environnement;
 import utils.Direction;
 
 public class Shark extends Agent {
@@ -29,7 +28,6 @@ public class Shark extends Agent {
 
 	@Override
 	public void doIt() {
-		Point posDir;
 
 		// C'est la maure :(
 		if (!alive) {
@@ -41,22 +39,23 @@ public class Shark extends Agent {
 		}
 
 		// Si on atteint le temps limite :
-		if (breed == breedTime) {
+		if (breed >= breedTime) {
 			Random r = new Random();
 
 			// On chope une position random
-			do {
-				int direction = r.nextInt(8);
-				dir = Direction.values()[direction];
-				posDir = Direction.getPoint(dir);
-			} while (env.isOutOfBounds(posX + posDir.x, posY + posDir.y) && !env.isFree(posDir.x, posDir.y));
-
-			// On bouge d'abord, après on créé un Shark à la position
-			// précédente
-			updatePosition(posDir.x, posDir.y);
-			env.getCell(posDir.x - posX, posDir.y - posY).setAgent(new Shark(env, posDir.x - posX, posDir.y - posY, 0));
-			
-			breed = 0;
+			List<Point> pointsDir = new ArrayList<Point>(Direction.pointsDir.values());
+			Collections.shuffle(pointsDir);
+			for (Point point : pointsDir) {
+				if (!env.isOutOfBounds(posX + point.x, posY + point.y) && env.getCell(posX + point.x, posY + point.y).getAgent() instanceof Fish) {
+					// On bouge d'abord, après on créé un Shark à la position
+					// précédente
+					updatePosition(posX + point.x, posY + point.y);
+					Shark newShark = new Shark(env,posX - point.x, posY - point.y, starveShark);
+					env.getCell( posX - point.x, posY - point.y).setAgent(newShark);
+					env.addAgent(newShark);
+					breed = 0;
+				}
+			}
 		}
 
 		// Si y'a un poisson, on le nique !!
@@ -81,7 +80,7 @@ public class Shark extends Agent {
 		Collections.shuffle(pointsDir);
 		for (Point point : pointsDir) {
 			if (!env.isOutOfBounds(posX + point.x, posY + point.y) && env.getCell(posX + point.x, posY + point.y).getAgent() instanceof Fish) {
-				fishPos.setLocation(posX + point.x, posY + point.y);
+				fishPos.setLocation((posX + point.x), (posY + point.y));
 				return true;
 			}
 		}

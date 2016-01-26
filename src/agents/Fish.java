@@ -1,8 +1,13 @@
 package agents;
 
 import java.awt.Color;
+import java.awt.Point;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import grille.Environnement;
+import utils.Direction;
 
 public class Fish extends Agent {
 	private static int breedTime;
@@ -22,11 +27,31 @@ public class Fish extends Agent {
 			return;
 		}
 
+		// Si on atteint le temps limite :
+		if (breed >= breedTime) {
+
+			// On chope une position random
+			List<Point> pointsDir = new ArrayList<Point>(Direction.pointsDir.values());
+			Collections.shuffle(pointsDir);
+			for (Point point : pointsDir) {
+				if (!env.isOutOfBounds(posX + point.x, posY + point.y) && env.getCell(posX + point.x, posY + point.y).getAgent() == null) {
+					// On bouge d'abord, après on créé un Shark à la position
+					// précédente
+					updatePosition(posX + point.x, posY + point.y);
+					Fish newFish = new Fish(env, posX - point.x, posY - point.y);
+					env.getCell( posX - point.x, posY - point.y ).setAgent(newFish);
+					env.addAgent(newFish);
+					breed = 0;
+				}
+			}
+		}
+
 		if (isSurrounded()) {
 			return;
 		}
 
 		randomMove();
+		breed++;
 
 	}
 
