@@ -28,7 +28,6 @@ public class Shark extends Agent {
 
 	@Override
 	public void doIt() {
-
 		// C'est la maure :(
 		if (!alive) {
 			return;
@@ -44,20 +43,23 @@ public class Shark extends Agent {
 			List<Point> pointsDir = new ArrayList<Point>(Direction.pointsDir.values());
 			Collections.shuffle(pointsDir);
 			for (Point point : pointsDir) {
-				if (!env.isOutOfBounds(posX + point.x, posY + point.y) && env.getCell(posX + point.x, posY + point.y).getAgent() instanceof Fish) {
+				if (!env.isOutOfBounds(posX + point.x, posY + point.y) && env.getCell(posX + point.x, posY + point.y).getAgent() == null) {
 					// On bouge d'abord, après on créé un Shark à la position
 					// précédente
+					// System.out.println("Let's move !");
 					updatePosition(posX + point.x, posY + point.y);
 					Shark newShark = new Shark(env, posX - point.x, posY - point.y, starveShark);
 					env.getCell(posX - point.x, posY - point.y).setAgent(newShark);
 					env.addAgent(newShark);
 					breed = 0;
+					break;
 				}
 			}
 		}
 
 		// Si y'a un poisson, on le nique !!
 		if (isFishAround()) {
+			// System.out.println("FIIIISH");
 			env.getCell(fishPos.x, fishPos.y).getAgent().die();
 			updatePosition(fishPos.x, fishPos.y);
 			starve = 0;
@@ -66,7 +68,6 @@ public class Shark extends Agent {
 
 		// Sinon on bouge au hasard
 		else {
-			// System.out.println("Starve : " + starve);
 			starve++;
 			breed++;
 			randomMove();
