@@ -6,10 +6,12 @@ public class Cellule {
 	public int x;
 	public int y;
 	Agent agent;
+	boolean free;
 
 	public Cellule(int x, int y) {
 		this.x = x;
 		this.y = y;
+		free = true;
 	}
 
 	public int getX() {
@@ -26,14 +28,15 @@ public class Cellule {
 
 	public void setAgent(Agent a) {
 		agent = a;
+		free = false;
 	}
 
 	public boolean isEmpty() {
-		return agent == null ? true : false;
+		return free;
 	}
 
 	public void clear() {
-		agent = null;
+		free = true;
 	}
 
 }

@@ -37,7 +37,7 @@ public class Fish extends Agent {
 			List<Point> pointsDir = new ArrayList<Point>(Direction.pointsDir.values());
 			Collections.shuffle(pointsDir);
 			for (Point point : pointsDir) {
-				if (!env.isOutOfBounds(posX + point.x, posY + point.y) && env.getCell(posX + point.x, posY + point.y).getAgent() == null) {
+				if (!env.isOutOfBounds(posX + point.x, posY + point.y) && env.getCell(posX + point.x, posY + point.y).isEmpty()) {
 					// On bouge d'abord, après on créé un Shark à la position
 					// précédente
 					updatePosition(posX + point.x, posY + point.y);
@@ -61,7 +61,7 @@ public class Fish extends Agent {
 			for (int y = -1; y < 1; y++) {
 				//	System.out.println(posX+x+"   "+ (posY+y));
 				if (!env.isOutOfBounds(posX+x, posY+y)) {
-					if (env.getCell(posX+x, posY+y).getAgent() != null) {
+					if (env.getCell(posX+x, posY+y).isEmpty()) {
 						return false;
 					}
 				}
