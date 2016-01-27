@@ -55,8 +55,12 @@ public abstract class Agent {
 		List<Point> pointsDir = new ArrayList<Point>(Direction.pointsDir.values());
 		Collections.shuffle(pointsDir);
 		for (Point point : pointsDir) {
-			if (!env.isOutOfBounds(posX+ point.x, posY + point.y) && env.isFree(posX + point.x, posY + point.y)) {
-				updatePosition((posX + point.x), (posY + point.y));
+			if (!env.isToric()) {
+				if (!env.isOutOfBounds(posX+ point.x, posY + point.y) && env.isFree(posX + point.x, posY + point.y)) {
+					updatePosition((posX + point.x), (posY + point.y));
+				}
+			}else if (env.isFree(Math.floorMod(posX + point.x,env.getWidth()) , Math.floorMod(posY + point.y, env.getHeight()))) {
+				updatePosition(Math.floorMod(posX + point.x,env.getWidth()), Math.floorMod(posY + point.y, env.getHeight()));
 			}
 		}
 

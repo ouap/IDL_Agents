@@ -21,16 +21,16 @@ public abstract class SMA extends Observable{
 	List<Agent> agents = new ArrayList<Agent>();
 
 
-	public SMA(int nbAgents, int nbTours, int vitesse, int height, int width, int agentSize, boolean showGrid, boolean equit ) {
+	public SMA(int nbAgents, int nbTours, int vitesse, int height, int width, int agentSize, boolean showGrid, boolean equit, boolean toric) {
 		System.out.println(""+height+ "  "+width);
 		this.nbAgents = nbAgents;
 		this.vitesse = vitesse;
 		this.nbTours=nbTours;
 		this.equit = equit;
 		this.showGrid = showGrid;
-		toric = false;
+		this.toric = toric;
 		this.agentSize = agentSize;
-		env = new Environnement(height, width, agents);
+		env = new Environnement(height, width, agents, toric);
 	}
 
 	public  abstract void init();

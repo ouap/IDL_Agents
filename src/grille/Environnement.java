@@ -1,17 +1,25 @@
 package grille;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import agents.Agent;
+import agents.Fish;
+import agents.Shark;
 
 public class Environnement {
 	private  Cellule[][] grille;
 	boolean thorique;
 	private List<Agent> agents;
+	public List<Fish> fishList;
+	public List<Shark> sharkList;
 
-	public Environnement(int x, int y, List<Agent> agents) {
+	public Environnement(int x, int y, List<Agent> agents, boolean toric) {
+		fishList = new ArrayList<Fish>();
+		sharkList = new ArrayList<Shark>();
 		grille = new Cellule[x][y];
 		this.agents = agents;
+		thorique = toric;
 		init();
 	}
 
@@ -24,6 +32,7 @@ public class Environnement {
 	}
 
 	public boolean isFree(int posX, int posY){
+
 		return grille[posX][posY].getAgent() == null;
 	}
 
@@ -45,10 +54,24 @@ public class Environnement {
 
 	public void removeAgent(Agent agent) {
 		agents.remove(agent);
+		if (agent.type().equals("fish")) {
+			fishList.remove(agent);
+		}else {
+			sharkList.remove(agent);
+		}
 	}
 
 	public void addAgent(Agent newAgent) {
 		agents.add(newAgent);
+		if (newAgent.type().equals("fish")) {
+			fishList.add((Fish) newAgent);
+		}else {
+			sharkList.add((Shark)newAgent);
+		}
+	}
+
+	public boolean isToric() {
+		return thorique;
 	}
 
 

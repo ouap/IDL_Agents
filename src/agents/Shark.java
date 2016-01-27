@@ -23,7 +23,6 @@ public class Shark extends Agent {
 		this.starveShark = starveShark;
 		breed = 0;
 		alive = true;
-		starveShark = 0;
 	}
 
 	@Override

@@ -44,14 +44,14 @@ public class Fish extends Agent {
 					Fish newFish = new Fish(env, posX - point.x, posY - point.y);
 					env.getCell( posX - point.x, posY - point.y ).setAgent(newFish);
 					env.addAgent(newFish);
-					System.out.println("Fish ++++++++");
 					breed = 0;
 					return;
 				}
 			}
+		}else{
+			randomMove();
 		}
 
-		randomMove();
 		breed++;
 
 	}
