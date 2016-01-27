@@ -13,8 +13,7 @@ import agents.Agent;
 import agents.Fish;
 import agents.Shark;
 
-public class SMAWator extends SMA{
-	private int sharkLife;
+public class SMAWator extends SMA {
 	private int nbFish;
 	private int nbShark;
 	private int starveShark = 5;
@@ -22,7 +21,7 @@ public class SMAWator extends SMA{
 	private int fishBreedTime = 5;
 
 	public SMAWator(int nbTours, int vitesse, int height, int width, int agentSize, boolean showGrid, boolean equit, boolean toric, int nbFish, int nbShark) {
-		super((nbFish + nbShark), nbTours,  vitesse,  height,  width,  agentSize,  showGrid,  equit, toric);
+		super((nbFish + nbShark), nbTours, vitesse, height, width, agentSize, showGrid, equit, toric);
 		this.nbFish = nbFish;
 		this.nbShark = nbShark;
 		init();
@@ -77,14 +76,12 @@ public class SMAWator extends SMA{
 			}
 			nbFish = env.fishList.size();
 			nbShark = env.sharkList.size();
-			FileUtils.writeStringToFile(new File("result.data"), i+" "+nbFish+" "+nbShark+"\n", true);
-			//System.out.println("Tour " + i);
+			FileUtils.writeStringToFile(new File("result.data"), i + " " + nbFish + " " + nbShark + "\n", true);
+			// System.out.println("Tour " + i);
 			setChanged();
 			notifyObservers();
 			Thread.sleep(vitesse);
 		}
 	}
-
-
 
 }

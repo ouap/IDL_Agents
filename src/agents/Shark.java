@@ -1,12 +1,13 @@
 package agents;
 
+import grille.Environnement;
+
+import java.awt.Color;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
-import grille.Environnement;
 import utils.Direction;
 
 public class Shark extends Agent {
@@ -19,7 +20,7 @@ public class Shark extends Agent {
 
 	public Shark(Environnement env, int x, int y, int starveShark) {
 		super(x, y, env);
-		super.color = color.blue;
+		super.color = Color.BLUE;
 		this.starveShark = starveShark;
 		breed = 0;
 		alive = true;
@@ -39,8 +40,6 @@ public class Shark extends Agent {
 
 		// Si on atteint le temps limite :
 		if (breed >= breedTime) {
-			Random r = new Random();
-
 			// On chope une position random
 			List<Point> pointsDir = new ArrayList<Point>(Direction.pointsDir.values());
 			Collections.shuffle(pointsDir);
@@ -49,8 +48,8 @@ public class Shark extends Agent {
 					// On bouge d'abord, après on créé un Shark à la position
 					// précédente
 					updatePosition(posX + point.x, posY + point.y);
-					Shark newShark = new Shark(env,posX - point.x, posY - point.y, starveShark);
-					env.getCell( posX - point.x, posY - point.y).setAgent(newShark);
+					Shark newShark = new Shark(env, posX - point.x, posY - point.y, starveShark);
+					env.getCell(posX - point.x, posY - point.y).setAgent(newShark);
 					env.addAgent(newShark);
 					breed = 0;
 				}
@@ -67,7 +66,7 @@ public class Shark extends Agent {
 
 		// Sinon on bouge au hasard
 		else {
-			//System.out.println("Starve : " + starve);
+			// System.out.println("Starve : " + starve);
 			starve++;
 			breed++;
 			randomMove();
