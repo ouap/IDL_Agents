@@ -63,6 +63,7 @@ public class Shark extends Agent {
 			env.getCell(fishPos.x, fishPos.y).getAgent().die();
 			updatePosition(fishPos.x, fishPos.y);
 			starve = 0;
+			breed++;
 		}
 
 		// Sinon on bouge au hasard

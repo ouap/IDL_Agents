@@ -32,7 +32,7 @@ public class Fish extends Agent {
 		}
 
 		// Si on atteint le temps limite :
-		if (breed == breedTime) {
+		if (breed >= breedTime) {
 			// On chope une position random
 			List<Point> pointsDir = new ArrayList<Point>(Direction.pointsDir.values());
 			Collections.shuffle(pointsDir);
