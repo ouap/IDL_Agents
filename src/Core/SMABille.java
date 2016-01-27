@@ -1,7 +1,9 @@
 package Core;
 
+import java.util.Collections;
 import java.util.Random;
 
+import agents.Agent;
 import agents.Bille;
 
 public class SMABille extends SMA {
@@ -34,6 +36,25 @@ public class SMABille extends SMA {
 
 			env.getCell(x, y).setAgent(new Bille(env, x, y));
 			agents.add(env.getCell(x, y).getAgent());
+		}
+	}
+
+	public void run() throws InterruptedException {
+
+		for (int i = 0; i < nbTours; i++) {
+			if (equit) {
+				Collections.shuffle(agents);
+			}
+
+
+			for (Agent a : agents) {
+				a.doIt();
+			}
+
+			//System.out.println("Tour " + i);
+			setChanged();
+			notifyObservers();
+			Thread.sleep(vitesse);
 		}
 	}
 

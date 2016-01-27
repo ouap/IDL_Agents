@@ -1,7 +1,6 @@
 package Core;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Observable;
 
@@ -36,25 +35,6 @@ public abstract class SMA extends Observable{
 
 	public  abstract void init();
 
-	public void run() throws InterruptedException {
-
-		for (int i = 0; i < nbTours; i++) {
-			if (equit) {
-				Collections.shuffle(agents);
-			}
-
-			List<Agent> dup = new ArrayList<Agent>(agents);
-
-			for (Agent a : dup) {
-				a.doIt();
-			}
-
-			System.out.println("Tour " + i);
-			setChanged();
-			notifyObservers();
-			Thread.sleep(vitesse);
-		}
-	}
 
 
 	public List<Agent> getAgents() {

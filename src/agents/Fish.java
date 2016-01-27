@@ -27,9 +27,12 @@ public class Fish extends Agent {
 			return;
 		}
 
-		// Si on atteint le temps limite :
-		if (breed >= breedTime) {
+		if (isSurrounded()) {
+			return;
+		}
 
+		// Si on atteint le temps limite :
+		if (breed == breedTime) {
 			// On chope une position random
 			List<Point> pointsDir = new ArrayList<Point>(Direction.pointsDir.values());
 			Collections.shuffle(pointsDir);
@@ -41,13 +44,11 @@ public class Fish extends Agent {
 					Fish newFish = new Fish(env, posX - point.x, posY - point.y);
 					env.getCell( posX - point.x, posY - point.y ).setAgent(newFish);
 					env.addAgent(newFish);
+					System.out.println("Fish ++++++++");
 					breed = 0;
+					return;
 				}
 			}
-		}
-
-		if (isSurrounded()) {
-			return;
 		}
 
 		randomMove();

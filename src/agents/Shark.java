@@ -67,7 +67,7 @@ public class Shark extends Agent {
 
 		// Sinon on bouge au hasard
 		else {
-			System.out.println("Starve : " + starve);
+			//System.out.println("Starve : " + starve);
 			starve++;
 			breed++;
 			randomMove();
