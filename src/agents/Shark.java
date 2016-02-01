@@ -1,13 +1,12 @@
 package agents;
 
-import grille.Environnement;
-
 import java.awt.Color;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import grille.Environnement;
 import utils.Direction;
 
 public class Shark extends Agent {

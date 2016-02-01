@@ -39,7 +39,8 @@ public class SMABille extends SMA {
 		}
 	}
 
-	public void run() throws InterruptedException {
+	@Override
+	public void run() {
 
 		for (int i = 0; i < nbTours; i++) {
 			if (equit) {
@@ -54,7 +55,12 @@ public class SMABille extends SMA {
 			//System.out.println("Tour " + i);
 			setChanged();
 			notifyObservers();
-			Thread.sleep(vitesse);
+			try {
+				Thread.sleep(vitesse);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 

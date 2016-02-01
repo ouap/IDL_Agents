@@ -1,13 +1,12 @@
 package agents;
 
-import grille.Environnement;
-
 import java.awt.Color;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import grille.Environnement;
 import utils.Direction;
 
 public abstract class Agent {
@@ -41,8 +40,14 @@ public abstract class Agent {
 		// System.out.println("NewPos : + (" + newX + ", "+newY
 		// +")   Direction : "+ dir);
 		env.getCell(posX, posY).clear();
-		posX = newX;
-		posY = newY;
+		if (env.isToric()) {
+			posX = Math.floorMod(newX, env.getWidth());
+			posY = Math.floorMod(newY, env.getHeight());
+		}else{
+			posX = newX;
+			posY = newY;
+		}
+
 		env.getCell(posX, posY).setAgent(this);
 	}
 
@@ -53,20 +58,15 @@ public abstract class Agent {
 		List<Point> pointsDir = new ArrayList<Point>(Direction.pointsDir.values());
 		Collections.shuffle(pointsDir);
 		for (Point point : pointsDir) {
-			if (!env.isToric()) {
-				if (!env.isOutOfBounds(posX + point.x, posY + point.y) && env.isFree(posX + point.x, posY + point.y)) {
-					updatePosition((posX + point.x), (posY + point.y));
-				}
-			} else if (env.isFree(Math.floorMod(posX + point.x, env.getWidth()), Math.floorMod(posY + point.y, env.getHeight()))) {
-				updatePosition(Math.floorMod(posX + point.x, env.getWidth()), Math.floorMod(posY + point.y, env.getHeight()));
-				// System.out.println(posX + " " + posY);
+			if (!env.isOutOfBounds(posX + point.x, posY + point.y) && env.isFree(posX + point.x, posY + point.y)) {
+				updatePosition((posX + point.x), (posY + point.y));
 				break;
+
 			}
 		}
-
-		// System.out.println("Hey I4m useless");
-
 	}
+
+
 
 	public abstract void die();
 

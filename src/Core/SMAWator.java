@@ -62,7 +62,8 @@ public class SMAWator extends SMA {
 
 	}
 
-	public void run() throws InterruptedException, IOException {
+	@Override
+	public void run() throws InterruptedException {
 
 		for (int i = 0; i < nbTours; i++) {
 			if (equit) {
@@ -76,7 +77,12 @@ public class SMAWator extends SMA {
 			}
 			nbFish = env.fishList.size();
 			nbShark = env.sharkList.size();
-			FileUtils.writeStringToFile(new File("result.data"), i + " " + nbFish + " " + nbShark + "\n", true);
+			try {
+				FileUtils.writeStringToFile(new File("result.data"), i + " " + nbFish + " " + nbShark + "\n", true);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			// System.out.println("Tour " + (i + 1));
 			setChanged();
 			notifyObservers();

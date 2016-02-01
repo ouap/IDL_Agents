@@ -35,7 +35,7 @@ public abstract class SMA extends Observable{
 
 	public  abstract void init();
 
-
+	public abstract void run() throws InterruptedException;
 
 	public List<Agent> getAgents() {
 		return agents;

@@ -2,9 +2,9 @@ package main;
 
 import java.io.IOException;
 
+import Core.SMAWator;
 import vue.GraphicViewWator;
 import vue.View;
-import Core.SMAWator;
 
 public class MainWator {
 

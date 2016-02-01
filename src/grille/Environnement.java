@@ -33,14 +33,20 @@ public class Environnement {
 
 	public boolean isFree(int posX, int posY){
 
-		return grille[posX][posY].getAgent() == null;
+		return getCell(posX, posY).getAgent() == null;
 	}
 
 	public Cellule getCell(int x, int y) {
+		if (isToric()) {
+			return grille[Math.floorMod(x, getWidth())][Math.floorMod(y, getHeight())];
+		}
 		return grille[x][y];
 	}
 
 	public boolean isOutOfBounds(int posX, int posY){
+		if (isToric()) {
+			return false;
+		}
 		return !((posX >= 0 && posX < getWidth()) &&  (posY >= 0 && posY < getHeight()));
 	}
 
