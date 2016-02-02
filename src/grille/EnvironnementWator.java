@@ -19,7 +19,11 @@ public class EnvironnementWator extends Environnement{
 
 	}
 
+	@Override
+	public boolean isFree(int posX, int posY){
 
+		return getCell(posX, posY).getAgent() == null;
+	}
 
 	public void removeAgent(Agent agent) {
 		agents.remove(agent);
@@ -29,6 +33,7 @@ public class EnvironnementWator extends Environnement{
 			sharkList.remove(agent);
 		}
 	}
+
 
 	public void addAgent(Agent newAgent) {
 		agents.add(newAgent);
