@@ -30,7 +30,6 @@ public abstract class SMA extends Observable{
 		this.showGrid = showGrid;
 		this.toric = toric;
 		this.agentSize = agentSize;
-		env = new Environnement(height, width, agents, toric);
 	}
 
 	public  abstract void init();

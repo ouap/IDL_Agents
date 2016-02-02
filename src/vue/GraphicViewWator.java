@@ -1,5 +1,6 @@
 package vue;
 
+import java.awt.Color;
 import java.util.Observable;
 
 import Core.SMAWator;
@@ -14,6 +15,7 @@ public class GraphicViewWator extends View{
 
 	public GraphicViewWator(SMAWator sma, String name) {
 		super(sma, name);
+		setBackground(Color.white);
 
 	}
 

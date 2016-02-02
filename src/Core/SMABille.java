@@ -5,6 +5,7 @@ import java.util.Random;
 
 import agents.Agent;
 import agents.Bille;
+import grille.Environnement;
 
 public class SMABille extends SMA {
 
@@ -12,6 +13,7 @@ public class SMABille extends SMA {
 	public SMABille(int nbAgents,int nbTours, int vitesse, int height, int length, int agentSize, boolean showGrid, boolean equit, boolean toric) {
 		super( nbAgents, nbTours,  vitesse,  height,  length,  agentSize,  showGrid,  equit, toric);
 		System.out.println(""+height+ "  "+length);
+		env = new Environnement(height, length, agents, toric);
 		super.nbAgents = nbAgents;
 		super.vitesse = vitesse;
 		super.nbTours=nbTours;

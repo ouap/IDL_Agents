@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.List;
 
 import grille.Environnement;
+import grille.EnvironnementWator;
 import utils.Direction;
 
 public class Shark extends Agent {
@@ -47,9 +48,9 @@ public class Shark extends Agent {
 					// précédente
 					// System.out.println("Let's move !");
 					updatePosition(posX + point.x, posY + point.y);
-					Shark newShark = new Shark(env, posX - point.x, posY - point.y, starveShark);
+					Shark newShark = new Shark((EnvironnementWator)env, posX - point.x, posY - point.y, starveShark);
 					env.getCell(posX - point.x, posY - point.y).setAgent(newShark);
-					env.addAgent(newShark);
+					((EnvironnementWator)env).addAgent(newShark);
 					breed = 0;
 					break;
 				}
@@ -98,7 +99,7 @@ public class Shark extends Agent {
 	@Override
 	public void die() {
 		env.getCell(posX, posY).clear();
-		env.removeAgent(this);
+		((EnvironnementWator)env).removeAgent(this);
 		alive = false;
 	}
 

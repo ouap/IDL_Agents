@@ -2,13 +2,18 @@ package vue;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JPanel;
 
 import Core.SMA;
+import Core.SMAPredator;
 import agents.Agent;
+import grille.EnvironnementHunter;
+import utils.Direction;
 
 public class Panel extends JPanel{
 
@@ -17,7 +22,7 @@ public class Panel extends JPanel{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private SMA sma;
+	SMA sma;
 	private boolean showGrid;
 	private int agentSize;
 	private int width;
@@ -29,10 +34,51 @@ public class Panel extends JPanel{
 		showGrid = sma.showGrid();
 		agentSize = sma.getAgentSize();
 		this.sma = sma;
-
 		this.setSize(width * agentSize, height * agentSize);
+		setFocusable(true);
+
+		if(sma instanceof SMAPredator) {
+			setListener();
+		}
 
 	}
+
+
+	public void setListener(){
+		addKeyListener(new KeyListener() {
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				switch (e.getKeyCode()) {
+				case KeyEvent.VK_UP:
+					((SMAPredator) sma).getYou().setDir(Direction.NORD);
+					break;
+				case KeyEvent.VK_DOWN:
+					((SMAPredator) sma).getYou().setDir(Direction.SUD);
+					break;
+				case KeyEvent.VK_LEFT:
+					((SMAPredator) sma).getYou().setDir(Direction.OUEST);
+					break;
+				case KeyEvent.VK_RIGHT:
+					((SMAPredator) sma).getYou().setDir(Direction.EST);
+					break;
+				}
+			}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+		});
+	}
+
+
 
 	@Override
 	public void paintComponent(Graphics g) {
@@ -44,6 +90,7 @@ public class Panel extends JPanel{
 	}
 
 
+
 	private void paintAgents(Graphics graphics) {
 
 		List<Agent> agents = new ArrayList<Agent>(sma.getAgents());
@@ -52,7 +99,13 @@ public class Panel extends JPanel{
 			graphics.setColor(agent.getColor());
 			graphics.fillRect(agent.getX() * agentSize, (agent.getY() * agentSize), agentSize, agentSize);
 		}
+		for (int i = 0; i < width; i++) {
+			for (int j = 0; j < height; j++) {
+				graphics.drawString("" + ((EnvironnementHunter)sma.getEnv()).getDijkstraTab()[i][j],i * agentSize, (j * agentSize) + 12);
 
+			}
+
+		}
 	}
 
 	private void paintGrid(Graphics graphics) {
@@ -65,6 +118,8 @@ public class Panel extends JPanel{
 		for (int i = 0; i <= width; i++) {
 			graphics.drawLine((i * agentSize), 0, i * agentSize, (height * agentSize));
 		}
+
+
 	}
 
 

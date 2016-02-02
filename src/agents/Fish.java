@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import grille.Environnement;
+import grille.EnvironnementWator;
 import utils.Direction;
 
 public class Fish extends Agent {
@@ -14,7 +14,7 @@ public class Fish extends Agent {
 	private int breed;
 	private boolean alive;
 
-	public Fish(Environnement env, int x, int y) {
+	public Fish(EnvironnementWator env, int x, int y) {
 		super(x, y, env);
 		color = Color.lightGray;
 		breed = 0;
@@ -41,9 +41,9 @@ public class Fish extends Agent {
 					// On bouge d'abord, après on créé un Shark à la position
 					// précédente
 					updatePosition(posX + point.x, posY + point.y);
-					Fish newFish = new Fish(env, posX - point.x, posY - point.y);
+					Fish newFish = new Fish((EnvironnementWator) env, posX - point.x, posY - point.y);
 					env.getCell( posX - point.x, posY - point.y ).setAgent(newFish);
-					env.addAgent(newFish);
+					((EnvironnementWator)env).addAgent(newFish);
 					breed = 0;
 					return;
 				}
@@ -84,7 +84,7 @@ public class Fish extends Agent {
 	@Override
 	public void die() {
 		env.getCell(posX, posY).clear();
-		env.removeAgent(this);
+		((EnvironnementWator)env).removeAgent(this);
 		alive=false;
 	}
 

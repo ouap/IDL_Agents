@@ -1,5 +1,7 @@
 package vue;
 
+import java.awt.Color;
+
 import Core.SMABille;
 
 public class GraphicViewBille extends View  {
@@ -11,6 +13,7 @@ public class GraphicViewBille extends View  {
 
 	public GraphicViewBille(SMABille sma, String name) {
 		super(sma, name);
+		setBackground(Color.white);
 
 
 	}

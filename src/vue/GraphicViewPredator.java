@@ -1,5 +1,8 @@
 package vue;
 
+import java.awt.Color;
+import java.util.Observable;
+
 import Core.SMAPredator;
 
 public class GraphicViewPredator extends View {
@@ -12,8 +15,14 @@ public class GraphicViewPredator extends View {
 
 	public GraphicViewPredator(SMAPredator sma, String name ) {
 		super(sma, name);
+		setBackground(Color.white);
 	}
 
+
+	@Override
+	public void update(Observable o, Object arg) {
+		paint(getGraphics());
+	}
 
 
 }

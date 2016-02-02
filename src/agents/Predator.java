@@ -1,18 +1,32 @@
 package agents;
 
-import grille.Environnement;
+import java.awt.Color;
+import java.awt.Point;
+
+import grille.EnvironnementHunter;
+import utils.Direction;
 
 public class Predator extends Agent {
-	private boolean alive;
 
-	public Predator(int x, int y, Environnement env) {
+	public Predator(int x, int y, EnvironnementHunter env) {
 		super(x, y, env);
+		color = Color.RED;
 	}
 
 	@Override
 	public void doIt() {
-		// TODO Method doIt
+		Point min = null;
+		int minVal= Integer.MAX_VALUE;
+		for (Point p : Direction.pointsDir.values()) {
+			if (!env.isOutOfBounds(posX+p.x, posY + p.y) && env.isFree(posX+p.x, posY + p.y)) {
+				if (((EnvironnementHunter)env).getDijkstraTab()[posX + p.x][posY + p.y] < minVal) {
+					minVal = ((EnvironnementHunter)env).getDijkstraTab()[posX + p.x][posY + p.y];
+					min = p;
+				}
+			}
+		}
 
+		updatePosition(posX + min.x, posY + min.y);
 	}
 
 	@Override
@@ -22,9 +36,7 @@ public class Predator extends Agent {
 
 	@Override
 	public void die() {
-		env.getCell(posX, posY).clear();
-		env.removeAgent(this);
-		alive = false;
+		return;
 	}
 
 }
