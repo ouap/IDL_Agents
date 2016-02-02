@@ -1,5 +1,7 @@
 package vue;
 
+import grille.EnvironnementHunter;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
@@ -9,13 +11,12 @@ import java.util.List;
 
 import javax.swing.JPanel;
 
+import utils.Direction;
 import Core.SMA;
 import Core.SMAPredator;
 import agents.Agent;
-import grille.EnvironnementHunter;
-import utils.Direction;
 
-public class Panel extends JPanel{
+public class Panel extends JPanel {
 
 	/**
 	 *
@@ -37,14 +38,13 @@ public class Panel extends JPanel{
 		this.setSize(width * agentSize, height * agentSize);
 		setFocusable(true);
 
-		if(sma instanceof SMAPredator) {
+		if (sma instanceof SMAPredator) {
 			setListener();
 		}
 
 	}
 
-
-	public void setListener(){
+	public void setListener() {
 		addKeyListener(new KeyListener() {
 
 			@Override
@@ -78,8 +78,6 @@ public class Panel extends JPanel{
 		});
 	}
 
-
-
 	@Override
 	public void paintComponent(Graphics g) {
 		if (showGrid) {
@@ -89,21 +87,22 @@ public class Panel extends JPanel{
 		paintAgents(g);
 	}
 
-
-
 	private void paintAgents(Graphics graphics) {
 
 		List<Agent> agents = new ArrayList<Agent>(sma.getAgents());
 
-		for(Agent agent : agents) {
+		for (Agent agent : agents) {
 			graphics.setColor(agent.getColor());
 			graphics.fillRect(agent.getX() * agentSize, (agent.getY() * agentSize), agentSize, agentSize);
 		}
 		for (int i = 0; i < width; i++) {
 			for (int j = 0; j < height; j++) {
 				graphics.setColor(Color.black);
-				graphics.drawString("" + ((EnvironnementHunter)sma.getEnv()).getDijkstraTab()[i][j],i * agentSize, (j * agentSize) + 12);
 
+				if (sma instanceof SMAPredator) {
+					if (((SMAPredator) sma).showNumbers)
+						graphics.drawString("" + ((EnvironnementHunter) sma.getEnv()).getDijkstraTab()[i][j], i * agentSize, (j * agentSize) + 12);
+				}
 
 			}
 
@@ -121,8 +120,6 @@ public class Panel extends JPanel{
 			graphics.drawLine((i * agentSize), 0, i * agentSize, (height * agentSize));
 		}
 
-
 	}
-
 
 }

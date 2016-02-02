@@ -1,5 +1,7 @@
 package Core;
 
+import grille.EnvironnementHunter;
+
 import java.util.Collections;
 import java.util.Random;
 
@@ -7,18 +9,19 @@ import agents.Agent;
 import agents.Predator;
 import agents.Rock;
 import agents.You;
-import grille.EnvironnementHunter;
 
 public class SMAPredator extends SMA {
 	private int nbPredator;
 	private int nbRock;
+	public boolean showNumbers;
 	private You you;
 
-	public SMAPredator(int nbTours, int vitesse, int height, int width, int agentSize, boolean showGrid,
-			boolean equit, boolean toric, int nbPredator, int nbRock) {
-		super(nbRock+nbPredator+1, nbTours, vitesse, height, width, agentSize, showGrid, equit, toric);
-		this.nbPredator=nbPredator;
+	public SMAPredator(int nbTours, int vitesse, int height, int width, int agentSize, boolean showGrid, boolean equit, boolean toric, boolean showNumbers,
+			int nbPredator, int nbRock) {
+		super(nbRock + nbPredator + 1, nbTours, vitesse, height, width, agentSize, showGrid, equit, toric);
+		this.nbPredator = nbPredator;
 		this.nbRock = nbRock;
+		this.showNumbers = showNumbers;
 		super.env = new EnvironnementHunter(width, height, agents, toric);
 		init();
 	}
@@ -40,7 +43,6 @@ public class SMAPredator extends SMA {
 			agents.add(env.getCell(x, y).getAgent());
 		}
 
-
 		for (int i = 0; i < nbPredator; i++) {
 
 			do {
@@ -52,7 +54,6 @@ public class SMAPredator extends SMA {
 			env.getCell(x, y).setAgent(newPredator);
 			agents.add(env.getCell(x, y).getAgent());
 		}
-
 
 		do {
 			y = r.nextInt(env.getWidth());
@@ -67,7 +68,7 @@ public class SMAPredator extends SMA {
 		System.out.println("FIN INIT");
 	}
 
-	public You getYou(){
+	public You getYou() {
 		return you;
 	}
 
@@ -82,7 +83,7 @@ public class SMAPredator extends SMA {
 				a.doIt();
 			}
 
-			//System.out.println("Tour " + i);
+			// System.out.println("Tour " + i);
 			setChanged();
 			notifyObservers();
 			try {

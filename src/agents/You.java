@@ -1,11 +1,12 @@
 package agents;
 
+import grille.Environnement;
+import grille.EnvironnementHunter;
+
 import java.awt.Color;
 import java.awt.Point;
 import java.util.Random;
 
-import grille.Environnement;
-import grille.EnvironnementHunter;
 import utils.Direction;
 
 public class You extends Agent {
@@ -16,21 +17,17 @@ public class You extends Agent {
 		Random r = new Random();
 
 		int direction = r.nextInt(8);
-		super.dir = Direction.values()[direction] ;
+		super.dir = Direction.values()[direction];
 	}
 
-
-	public void setDir(Direction dir){
+	public void setDir(Direction dir) {
 		this.dir = dir;
 	}
 
 	@Override
 	public void doIt() {
 		Point nexpos = Direction.getPoint(dir);
-		//System.out.println("outofb     "+ !env.isOutOfBounds(posX + nexpos.x, posY + nexpos.y));
-		//System.out.println("free       "+ env.isFree(posX + nexpos.x, posY + nexpos.y));
 		if (!env.isOutOfBounds(posX + nexpos.x, posY + nexpos.y) && env.isFree(posX + nexpos.x, posY + nexpos.y)) {
-			//System.out.println(dir);
 			updatePosition(posX + nexpos.x, posY + nexpos.y);
 
 		}
@@ -49,7 +46,5 @@ public class You extends Agent {
 		// TODO Auto-generated method stub
 
 	}
-
-
 
 }
