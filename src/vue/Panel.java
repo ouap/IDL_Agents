@@ -101,7 +101,9 @@ public class Panel extends JPanel{
 		}
 		for (int i = 0; i < width; i++) {
 			for (int j = 0; j < height; j++) {
+				graphics.setColor(Color.black);
 				graphics.drawString("" + ((EnvironnementHunter)sma.getEnv()).getDijkstraTab()[i][j],i * agentSize, (j * agentSize) + 12);
+
 
 			}
 

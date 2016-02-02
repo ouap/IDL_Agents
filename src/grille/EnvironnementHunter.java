@@ -10,36 +10,39 @@ public class EnvironnementHunter extends Environnement{
 	public EnvironnementHunter(int x, int y, List<Agent> agents, boolean toric) {
 		super(x, y, agents, toric);
 		dijkstraTab = new int[x][y];
-		initDijkstra();
 		// TODO Auto-generated constructor stub
 	}
 
 
-	public void initDijkstra(){
+	public void initDijkstra(int x, int y){
+		System.out.println(x + "     " + y);
 		for (int i = 0; i < getWidth(); i++) {
 			for (int j = 0; j < getHeight(); j++) {
-				dijkstraTab[i][j] = 0;
+				dijkstraTab[i][j] = -1;
 			}
 		}
+		dijkstraTab[x][y] = 0;
 	}
 
 	public void doDijkstra(int x, int y, int inception)	{
 		int value = inception;
-		if (isOutOfBounds(x, y) || (dijkstraTab[x][y] != 0 && dijkstraTab[x][y] < value)) {
-			return;
-		} else	{
-			//System.out.println("Value : " + dijkstraTab[x][y]);
 
-			setDijkstraValue(x, y, value);
+		dijkstraTab[x][y] =  value;
+		if(!isOutOfBounds(x, y-1) && (dijkstraTab[x][y-1] == -1 ||  dijkstraTab[x][y-1] > value+1) && dijkstraTab[x][y-1]!=0) {
 			doDijkstra(x, y-1, value+1);
+		}
+
+		if(!isOutOfBounds(x+1, y) && (dijkstraTab[x+1][y] == -1 ||  dijkstraTab[x+1][y] > value+1) && dijkstraTab[x+1][y]!=0) {
 			doDijkstra(x+1, y, value+1);
+		}
+		if(!isOutOfBounds(x, y+1) && (dijkstraTab[x][y+1] == -1 ||  dijkstraTab[x][y+1] > value+1) && dijkstraTab[x][y+1]!=0) {
 			doDijkstra(x, y+1, value+1);
+		}
+		if(!isOutOfBounds(x-1, y) && (dijkstraTab[x-1][y] == -1 ||  dijkstraTab[x-1][y] > value+1) && dijkstraTab[x-1][y]!=0) {
 			doDijkstra(x-1, y, value+1);
 		}
-	}
 
-	public void setDijkstraValue(int x, int y, int value)	{
-		dijkstraTab[x][y] = value;
+
 	}
 
 

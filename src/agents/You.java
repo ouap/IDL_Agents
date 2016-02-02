@@ -32,7 +32,9 @@ public class You extends Agent {
 		if (!env.isOutOfBounds(posX + nexpos.x, posY + nexpos.y) && env.isFree(posX + nexpos.x, posY + nexpos.y)) {
 			//System.out.println(dir);
 			updatePosition(posX + nexpos.x, posY + nexpos.y);
+
 		}
+		((EnvironnementHunter) env).initDijkstra(posX, posY);
 		((EnvironnementHunter) env).doDijkstra(super.getX(), super.getY(), 1);
 
 	}

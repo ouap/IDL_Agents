@@ -8,7 +8,7 @@ public class MainPredator {
 
 
 	public static void main(String[] args) throws InterruptedException {
-		SMAPredator simulation = new SMAPredator(1, 40, 10, 10, 100, true, true, false, 0, 5);
+		SMAPredator simulation = new SMAPredator(0, 40, 20, 20, 15, true, true, false, 0, 1);
 		// NbAgents, nbTours, vitesse, height, width, agentsize, showGrid, equit
 		View v = new GraphicViewPredator(simulation, "Chambre d'evolution");
 		v.setVisible(true);

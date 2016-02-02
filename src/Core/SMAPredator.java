@@ -20,7 +20,6 @@ public class SMAPredator extends SMA {
 		this.nbPredator=nbPredator;
 		this.nbRock = nbRock;
 		super.env = new EnvironnementHunter(width, height, agents, toric);
-		((EnvironnementHunter) env).initDijkstra();
 		init();
 	}
 
@@ -60,10 +59,12 @@ public class SMAPredator extends SMA {
 			x = r.nextInt(env.getHeight());
 		} while (!env.getCell(x, y).isEmpty());
 		you = new You(x, y, env);
-		((EnvironnementHunter) env).setDijkstraValue(x, y, 0);
 
 		env.getCell(x, y).setAgent(you);
 		agents.add(env.getCell(x, y).getAgent());
+		((EnvironnementHunter) env).initDijkstra(x, y);
+		((EnvironnementHunter) env).doDijkstra(x, y, 0);
+		System.out.println("FIN INIT");
 	}
 
 	public You getYou(){

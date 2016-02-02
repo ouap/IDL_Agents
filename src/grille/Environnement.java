@@ -7,6 +7,7 @@ import agents.Agent;
 public class Environnement {
 	private  Cellule[][] grille;
 	boolean thorique;
+	boolean text;
 	protected List<Agent> agents;
 
 	public Environnement(int x, int y, List<Agent> agents, boolean toric) {
@@ -53,6 +54,11 @@ public class Environnement {
 
 	public boolean isToric() {
 		return thorique;
+	}
+
+	public boolean text() {
+		// TODO Auto-generated method stub
+		return text;
 	}
 
 }
