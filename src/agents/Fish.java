@@ -1,12 +1,13 @@
 package agents;
 
+import grille.EnvironnementWator;
+
 import java.awt.Color;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import grille.EnvironnementWator;
 import utils.Direction;
 
 public class Fish extends Agent {
@@ -42,13 +43,13 @@ public class Fish extends Agent {
 					// précédente
 					updatePosition(posX + point.x, posY + point.y);
 					Fish newFish = new Fish((EnvironnementWator) env, posX - point.x, posY - point.y);
-					env.getCell( posX - point.x, posY - point.y ).setAgent(newFish);
-					((EnvironnementWator)env).addAgent(newFish);
+					env.getCell(posX - point.x, posY - point.y).setAgent(newFish);
+					((EnvironnementWator) env).addAgent(newFish);
 					breed = 0;
 					return;
 				}
 			}
-		}else{
+		} else {
 			randomMove();
 		}
 
@@ -59,9 +60,9 @@ public class Fish extends Agent {
 	private boolean isSurrounded() {
 		for (int x = -1; x < 1; x++) {
 			for (int y = -1; y < 1; y++) {
-				//	System.out.println(posX+x+"   "+ (posY+y));
-				if (!env.isOutOfBounds(posX+x, posY+y)) {
-					if (env.getCell(posX+x, posY+y).isEmpty()) {
+				// System.out.println(posX+x+"   "+ (posY+y));
+				if (!env.isOutOfBounds(posX + x, posY + y)) {
+					if (env.getCell(posX + x, posY + y).isEmpty()) {
 						return false;
 					}
 				}
@@ -70,9 +71,7 @@ public class Fish extends Agent {
 		return true;
 	}
 
-
-
-	public boolean isAlive(){
+	public boolean isAlive() {
 		return alive;
 	}
 
@@ -83,14 +82,27 @@ public class Fish extends Agent {
 
 	@Override
 	public void die() {
-		env.getCell(posX, posY).clear();
-		((EnvironnementWator)env).removeAgent(this);
-		alive=false;
+		env.getCell(posX, posY).clearWator();
+		((EnvironnementWator) env).removeAgent(this);
+		alive = false;
 	}
 
 	public static void setBreedTime(int time) {
 		breedTime = time;
 	}
 
+	@Override
+	public void updatePosition(int newX, int newY) {
+		env.getCell(posX, posY).clearWator();
+		if (env.isToric()) {
+			posX = Math.floorMod(newX, env.getWidth());
+			posY = Math.floorMod(newY, env.getHeight());
+		} else {
+			posX = newX;
+			posY = newY;
+		}
+
+		env.getCell(posX, posY).setAgent(this);
+	}
 
 }

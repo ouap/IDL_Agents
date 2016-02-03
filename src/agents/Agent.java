@@ -1,12 +1,13 @@
 package agents;
 
+import grille.Environnement;
+
 import java.awt.Color;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import grille.Environnement;
 import utils.Direction;
 
 public abstract class Agent {
@@ -22,7 +23,7 @@ public abstract class Agent {
 		posY = y;
 	}
 
-	public abstract void doIt();
+	public abstract void doIt() throws GameOverException;
 
 	public int getX() {
 		return posX;
@@ -36,20 +37,7 @@ public abstract class Agent {
 		return color;
 	}
 
-	public void updatePosition(int newX, int newY) {
-		// System.out.println("NewPos : + (" + newX + ", "+newY
-		// +")   Direction : "+ dir);
-		env.getCell(posX, posY).clear();
-		if (env.isToric()) {
-			posX = Math.floorMod(newX, env.getWidth());
-			posY = Math.floorMod(newY, env.getHeight());
-		}else{
-			posX = newX;
-			posY = newY;
-		}
-
-		env.getCell(posX, posY).setAgent(this);
-	}
+	public abstract void updatePosition(int newX, int newY);
 
 	public abstract String type();
 
@@ -65,8 +53,6 @@ public abstract class Agent {
 			}
 		}
 	}
-
-
 
 	public abstract void die();
 

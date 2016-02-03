@@ -1,14 +1,15 @@
 package Core;
 
+import grille.Environnement;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 
 import agents.Agent;
-import grille.Environnement;
+import agents.GameOverException;
 
-public abstract class SMA extends Observable{
-
+public abstract class SMA extends Observable {
 
 	protected Environnement env;
 	protected int nbTours;
@@ -20,35 +21,37 @@ public abstract class SMA extends Observable{
 	protected boolean showGrid;
 	List<Agent> agents = new ArrayList<Agent>();
 
-
 	public SMA(int nbAgents, int nbTours, int vitesse, int height, int width, int agentSize, boolean showGrid, boolean equit, boolean toric) {
-		System.out.println(""+height+ "  "+width);
+		System.out.println("" + height + "  " + width);
 		this.nbAgents = nbAgents;
 		this.vitesse = vitesse;
-		this.nbTours=nbTours;
+		this.nbTours = nbTours;
 		this.equit = equit;
 		this.showGrid = showGrid;
 		this.toric = toric;
 		this.agentSize = agentSize;
 	}
 
-	public  abstract void init();
+	public abstract void init();
 
-	public abstract void run() throws InterruptedException;
+	public abstract void run() throws InterruptedException, GameOverException;
 
 	public List<Agent> getAgents() {
 		return agents;
 	}
 
-	public Environnement getEnv(){
+	public Environnement getEnv() {
 		return env;
 	}
-	public int getAgentSize(){
+
+	public int getAgentSize() {
 		return agentSize;
 	}
-	public boolean isToric(){
+
+	public boolean isToric() {
 		return toric;
 	}
+
 	public boolean showGrid() {
 		// TODO Auto-generated method stub
 		return showGrid;

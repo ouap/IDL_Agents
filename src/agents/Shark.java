@@ -1,13 +1,14 @@
 package agents;
 
+import grille.Environnement;
+import grille.EnvironnementWator;
+
 import java.awt.Color;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import grille.Environnement;
-import grille.EnvironnementWator;
 import utils.Direction;
 
 public class Shark extends Agent {
@@ -48,9 +49,9 @@ public class Shark extends Agent {
 					// précédente
 					// System.out.println("Let's move !");
 					updatePosition(posX + point.x, posY + point.y);
-					Shark newShark = new Shark((EnvironnementWator)env, posX - point.x, posY - point.y, starveShark);
+					Shark newShark = new Shark(env, posX - point.x, posY - point.y, starveShark);
 					env.getCell(posX - point.x, posY - point.y).setAgent(newShark);
-					((EnvironnementWator)env).addAgent(newShark);
+					((EnvironnementWator) env).addAgent(newShark);
 					breed = 0;
 					break;
 				}
@@ -98,13 +99,27 @@ public class Shark extends Agent {
 
 	@Override
 	public void die() {
-		env.getCell(posX, posY).clear();
-		((EnvironnementWator)env).removeAgent(this);
+		env.getCell(posX, posY).clearWator();
+		((EnvironnementWator) env).removeAgent(this);
 		alive = false;
 	}
 
 	public static void setBreedTime(int time) {
 		breedTime = time;
+	}
+
+	@Override
+	public void updatePosition(int newX, int newY) {
+		env.getCell(posX, posY).clearWator();
+		if (env.isToric()) {
+			posX = Math.floorMod(newX, env.getWidth());
+			posY = Math.floorMod(newY, env.getHeight());
+		} else {
+			posX = newX;
+			posY = newY;
+		}
+
+		env.getCell(posX, posY).setAgent(this);
 	}
 
 }

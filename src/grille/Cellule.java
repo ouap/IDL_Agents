@@ -37,6 +37,11 @@ public class Cellule {
 
 	public void clear() {
 		free = true;
+		agent = null;
+	}
+
+	public void clearWator() {
+		free = true;
 	}
 
 }

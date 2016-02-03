@@ -45,4 +45,20 @@ public class You extends Agent {
 
 	}
 
+	@Override
+	public void updatePosition(int newX, int newY) {
+		// System.out.println("NewPos : + (" + newX + ", "+newY
+		// +")   Direction : "+ dir);
+		env.getCell(posX, posY).clear();
+		if (env.isToric()) {
+			posX = Math.floorMod(newX, env.getWidth());
+			posY = Math.floorMod(newY, env.getHeight());
+		} else {
+			posX = newX;
+			posY = newY;
+		}
+
+		env.getCell(posX, posY).setAgent(this);
+	}
+
 }

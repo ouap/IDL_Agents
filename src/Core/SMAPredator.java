@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.Random;
 
 import agents.Agent;
+import agents.GameOverException;
 import agents.Predator;
 import agents.Rock;
 import agents.You;
@@ -72,7 +73,7 @@ public class SMAPredator extends SMA {
 	}
 
 	@Override
-	public void run() throws InterruptedException {
+	public void run() throws InterruptedException, GameOverException {
 		for (int i = 0; i < nbTours; i++) {
 			if (equit) {
 				Collections.shuffle(agents);

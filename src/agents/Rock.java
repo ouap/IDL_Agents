@@ -1,8 +1,8 @@
 package agents;
 
-import java.awt.Color;
-
 import grille.Environnement;
+
+import java.awt.Color;
 
 public class Rock extends Agent {
 
@@ -24,6 +24,12 @@ public class Rock extends Agent {
 	@Override
 	public void die() {
 		return;
+	}
+
+	@Override
+	public void updatePosition(int newX, int newY) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

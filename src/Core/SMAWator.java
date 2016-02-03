@@ -1,5 +1,7 @@
 package Core;
 
+import grille.EnvironnementWator;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,8 +13,8 @@ import org.apache.commons.io.FileUtils;
 
 import agents.Agent;
 import agents.Fish;
+import agents.GameOverException;
 import agents.Shark;
-import grille.EnvironnementWator;
 
 public class SMAWator extends SMA {
 	private int nbFish;
@@ -45,7 +47,7 @@ public class SMAWator extends SMA {
 
 			env.getCell(x, y).setAgent(newFish);
 			agents.add(env.getCell(x, y).getAgent());
-			((EnvironnementWator)env).fishList.add(newFish);
+			((EnvironnementWator) env).fishList.add(newFish);
 		}
 
 		for (int i = 0; i < nbShark; i++) {
@@ -55,17 +57,17 @@ public class SMAWator extends SMA {
 				x = r.nextInt(env.getHeight());
 			} while (!env.getCell(x, y).isEmpty());
 
-			Shark newShark = new Shark((EnvironnementWator)env, x, y, starveShark);
+			Shark newShark = new Shark(env, x, y, starveShark);
 
 			env.getCell(x, y).setAgent(newShark);
 			agents.add(newShark);
-			((EnvironnementWator)env).sharkList.add(newShark);
+			((EnvironnementWator) env).sharkList.add(newShark);
 		}
 
 	}
 
 	@Override
-	public void run() throws InterruptedException {
+	public void run() throws InterruptedException, GameOverException {
 
 		for (int i = 0; i < nbTours; i++) {
 			if (equit) {
@@ -77,8 +79,8 @@ public class SMAWator extends SMA {
 			for (Agent a : dup) {
 				a.doIt();
 			}
-			nbFish = ((EnvironnementWator)env).fishList.size();
-			nbShark = ((EnvironnementWator)env).sharkList.size();
+			nbFish = ((EnvironnementWator) env).fishList.size();
+			nbShark = ((EnvironnementWator) env).sharkList.size();
 			try {
 				FileUtils.writeStringToFile(new File("result.data"), i + " " + nbFish + " " + nbShark + "\n", true);
 			} catch (IOException e) {
