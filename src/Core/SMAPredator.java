@@ -65,7 +65,6 @@ public class SMAPredator extends SMA {
 		agents.add(env.getCell(x, y).getAgent());
 		((EnvironnementHunter) env).initDijkstra(x, y);
 		((EnvironnementHunter) env).doDijkstra(x, y, 0);
-		System.out.println("FIN INIT");
 	}
 
 	public You getYou() {

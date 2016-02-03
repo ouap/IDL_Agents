@@ -5,7 +5,7 @@ import java.util.List;
 import agents.Agent;
 
 public class Environnement {
-	private  Cellule[][] grille;
+	private Cellule[][] grille;
 	boolean thorique;
 	boolean text;
 	protected List<Agent> agents;
@@ -25,8 +25,7 @@ public class Environnement {
 		}
 	}
 
-	public boolean isFree(int posX, int posY){
-
+	public boolean isFree(int posX, int posY) {
 		return getCell(posX, posY).isEmpty();
 	}
 
@@ -37,11 +36,11 @@ public class Environnement {
 		return grille[x][y];
 	}
 
-	public boolean isOutOfBounds(int posX, int posY){
+	public boolean isOutOfBounds(int posX, int posY) {
 		if (isToric()) {
 			return false;
 		}
-		return !((posX >= 0 && posX < getWidth()) &&  (posY >= 0 && posY < getHeight()));
+		return !((posX >= 0 && posX < getWidth()) && (posY >= 0 && posY < getHeight()));
 	}
 
 	public int getHeight() {
