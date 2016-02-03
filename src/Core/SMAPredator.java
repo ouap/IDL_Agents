@@ -15,14 +15,16 @@ public class SMAPredator extends SMA {
 	private int nbPredator;
 	private int nbRock;
 	public boolean showNumbers;
+	public boolean isFairPlay;
 	private You you;
 
 	public SMAPredator(int nbTours, int vitesse, int height, int width, int agentSize, boolean showGrid, boolean equit, boolean toric, boolean showNumbers,
-			int nbPredator, int nbRock) {
+			boolean isFairPlay, int nbPredator, int nbRock) {
 		super(nbRock + nbPredator + 1, nbTours, vitesse, height, width, agentSize, showGrid, equit, toric);
 		this.nbPredator = nbPredator;
 		this.nbRock = nbRock;
 		this.showNumbers = showNumbers;
+		this.isFairPlay = isFairPlay;
 		super.env = new EnvironnementHunter(width, height, agents, toric);
 		init();
 	}
@@ -50,7 +52,7 @@ public class SMAPredator extends SMA {
 				y = r.nextInt(env.getWidth());
 				x = r.nextInt(env.getHeight());
 			} while (!env.getCell(x, y).isEmpty());
-			Predator newPredator = new Predator(x, y, ((EnvironnementHunter) env));
+			Predator newPredator = new Predator(x, y, ((EnvironnementHunter) env), isFairPlay);
 
 			env.getCell(x, y).setAgent(newPredator);
 			agents.add(env.getCell(x, y).getAgent());

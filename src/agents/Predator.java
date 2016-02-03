@@ -9,8 +9,11 @@ import utils.Direction;
 
 public class Predator extends Agent {
 
-	public Predator(int x, int y, EnvironnementHunter env) {
+	private boolean isFairPlay;
+
+	public Predator(int x, int y, EnvironnementHunter env, boolean isFairPlay) {
 		super(x, y, env);
+		this.isFairPlay = isFairPlay;
 		color = Color.RED;
 	}
 
@@ -19,6 +22,8 @@ public class Predator extends Agent {
 		Point min = null;
 		int minVal = Integer.MAX_VALUE;
 		for (Point p : Direction.pointsDir.values()) {
+			if (isFairPlay && !isFair(p))
+				continue;
 			if (env.getCell(posX + p.x, posY + p.y).getAgent() instanceof You) {
 				env.getCell(posX + p.x, posY + p.y).getAgent().die();
 				throw new GameOverException();
@@ -39,6 +44,13 @@ public class Predator extends Agent {
 		} catch (NullPointerException e) {
 
 		}
+	}
+
+	private boolean isFair(Point p) {
+		if (Direction.pointsDir.get("NORD_EST").equals(p) || Direction.pointsDir.get("NORD_OUEST").equals(p) || Direction.pointsDir.get("SUD_EST").equals(p)
+				|| Direction.pointsDir.get("SUD_OUEST").equals(p))
+			return false;
+		return true;
 	}
 
 	@Override
