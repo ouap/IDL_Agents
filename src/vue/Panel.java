@@ -18,9 +18,6 @@ import agents.Agent;
 
 public class Panel extends JPanel {
 
-	/**
-	 *
-	 */
 	private static final long serialVersionUID = 1L;
 
 	SMA sma;

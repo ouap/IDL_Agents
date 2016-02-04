@@ -13,7 +13,6 @@ public class SMABille extends SMA {
 
 	public SMABille(int nbAgents, int nbTours, int vitesse, int height, int length, int agentSize, boolean showGrid, boolean equit, boolean toric) {
 		super(nbAgents, nbTours, vitesse, height, length, agentSize, showGrid, equit, toric);
-		System.out.println("" + height + "  " + length);
 		env = new Environnement(height, length, agents, toric);
 		super.nbAgents = nbAgents;
 		super.vitesse = vitesse;
@@ -34,7 +33,6 @@ public class SMABille extends SMA {
 			do {
 				y = r.nextInt(env.getWidth());
 				x = r.nextInt(env.getHeight());
-				System.out.println("y : " + y + " - x : " + x);
 			} while (!env.getCell(x, y).isEmpty());
 
 			env.getCell(x, y).setAgent(new Bille(env, x, y));
@@ -54,7 +52,6 @@ public class SMABille extends SMA {
 				a.doIt();
 			}
 
-			// System.out.println("Tour " + i);
 			setChanged();
 			notifyObservers();
 			try {

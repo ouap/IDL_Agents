@@ -41,8 +41,7 @@ public class You extends Agent {
 
 	@Override
 	public void die() {
-		// TODO Auto-generated method stub
-
+		// TODO by Yassine "méthode die()" for 10/02/2016
 	}
 
 	@Override

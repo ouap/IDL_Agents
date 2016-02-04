@@ -24,7 +24,7 @@ public class Predator extends Agent {
 		for (Point p : Direction.pointsDir.values()) {
 			if (isFairPlay && !isFair(p))
 				continue;
-			if (env.getCell(posX + p.x, posY + p.y).getAgent() instanceof You) {
+			if (!(env.isOutOfBounds(posX + p.x, posY + p.y)) && env.getCell(posX + p.x, posY + p.y).getAgent() instanceof You) {
 				env.getCell(posX + p.x, posY + p.y).getAgent().die();
 				throw new GameOverException();
 			}
@@ -37,7 +37,8 @@ public class Predator extends Agent {
 			}
 		}
 
-		// Dirtier trick than Thibault Rosa
+		// TODO by Yassine "Gérer l'exception, trouver le NPE bug" for 08 / 02 /
+		// 2016
 		try {
 			if (((EnvironnementHunter) env).getCell(posX + min.x, posY + min.y).isEmpty())
 				updatePosition(posX + min.x, posY + min.y);
@@ -63,6 +64,7 @@ public class Predator extends Agent {
 		return;
 	}
 
+	// TODO by Ouamar "clear() / isEmpty() fix" for 08 / 02 / 2016
 	@Override
 	public void updatePosition(int newX, int newY) {
 		env.getCell(posX, posY).clear();

@@ -19,14 +19,14 @@ import agents.Shark;
 public class SMAWator extends SMA {
 	private int nbFish;
 	private int nbShark;
-	private int starveShark = 3;
-	private int sharkBreedTime = 9;
-	private int fishBreedTime = 2;
+	private int starveShark;
 
-	public SMAWator(int nbTours, int vitesse, int height, int width, int agentSize, boolean showGrid, boolean equit, boolean toric, int nbFish, int nbShark) {
+	public SMAWator(int nbTours, int vitesse, int height, int width, int agentSize, boolean showGrid, boolean equit, boolean toric, int nbFish, int nbShark,
+			int starveShark, int sharkBreedTime, int fishBreedTime) {
 		super((nbFish + nbShark), nbTours, vitesse, height, width, agentSize, showGrid, equit, toric);
 		this.nbFish = nbFish;
 		this.nbShark = nbShark;
+		this.starveShark = starveShark;
 		env = new EnvironnementWator(height, width, agents, toric);
 		init();
 		Fish.setBreedTime(fishBreedTime);

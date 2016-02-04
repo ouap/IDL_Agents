@@ -1,5 +1,11 @@
 package main;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.stream.Stream;
+
 import vue.GraphicViewBille;
 import vue.View;
 import Core.SMABille;
@@ -8,10 +14,30 @@ import agents.GameOverException;
 public class MainBille {
 
 	public static void main(String[] args) throws InterruptedException, GameOverException {
-		SMABille simulation = new SMABille(100, 2000, 40, 100, 100, 7, false, true, true);
-		// NbAgents, nbTours, vitesse, height, width, agentsize, showGrid, equit
-		View v = new GraphicViewBille(simulation, "Chambre d'evolution");
-		v.setVisible(true);
-		simulation.run();
+		if (args.length == 1 && args[0].equals("readme")) {
+			Path path = Paths.get("readme_bille.md");
+			try (Stream<String> lines = Files.lines(path)) {
+				lines.forEach(s -> System.out.println(s));
+			} catch (IOException ex) {
+				System.exit(0);
+			}
+		}
+
+		else if (args.length != 9) {
+			Path path = Paths.get("error_bille.err");
+			try (Stream<String> lines = Files.lines(path)) {
+				lines.forEach(s -> System.out.println(s));
+			} catch (IOException ex) {
+				System.exit(1);
+			}
+		}
+
+		else {
+			SMABille simulation = new SMABille(Integer.parseInt(args[0]), Integer.parseInt(args[1]), Integer.parseInt(args[2]), Integer.parseInt(args[3]),
+					Integer.parseInt(args[4]), Integer.parseInt(args[5]), Boolean.valueOf(args[6]), Boolean.valueOf(args[7]), Boolean.valueOf(args[8]));
+			View v = new GraphicViewBille(simulation, "Chambre d'evolution");
+			v.setVisible(true);
+			simulation.run();
+		}
 	}
 }
