@@ -9,8 +9,8 @@ import utils.Direction;
 
 public class Bille extends Agent {
 
-	// TODO by Ouamar "Meilleure factorisation pour agent" for 08/02/2016
 	public Bille(Environnement env, int posx, int posy) {
+		// TODO by Ouamar Sais "Meilleure factorisation pour agent" for 08/02/2016s
 		super(posx, posy, env);
 		Random r = new Random();
 

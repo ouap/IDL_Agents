@@ -37,8 +37,7 @@ public class Predator extends Agent {
 			}
 		}
 
-		// TODO by Yassine "Gérer l'exception, trouver le NPE bug" for 08 / 02 /
-		// 2016
+		// TODO by Yassine Badache "Gérer l'exception, trouver le NPE bug" for 08/02/2016
 		try {
 			if (((EnvironnementHunter) env).getCell(posX + min.x, posY + min.y).isEmpty())
 				updatePosition(posX + min.x, posY + min.y);
@@ -64,9 +63,9 @@ public class Predator extends Agent {
 		return;
 	}
 
-	// TODO by Ouamar "clear() / isEmpty() fix" for 08 / 02 / 2016
 	@Override
 	public void updatePosition(int newX, int newY) {
+		// TODO by Ouamar Sais "clear() / isEmpty() fix" for 08/02/2016
 		env.getCell(posX, posY).clear();
 		if (env.isToric()) {
 			posX = Math.floorMod(newX, env.getWidth());

@@ -14,6 +14,7 @@ import agents.GameOverException;
 public class MainBille {
 
 	public static void main(String[] args) throws InterruptedException, GameOverException {
+		// TODO by Ouamar Sais "Vérifier si ça rend bien" for 09/02/2016
 		if (args.length == 1 && args[0].equals("readme")) {
 			Path path = Paths.get("readme_bille.md");
 			try (Stream<String> lines = Files.lines(path)) {

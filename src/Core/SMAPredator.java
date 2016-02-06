@@ -18,10 +18,10 @@ public class SMAPredator extends SMA {
 	public boolean isFairPlay;
 	private You you;
 
-	// TODO by Ouamar "Factorisation avec SMA" for 10/02/2016
 	public SMAPredator(int nbTours, int vitesse, int height, int width, int agentSize, boolean showGrid, boolean equit, boolean toric, boolean showNumbers,
 			boolean isFairPlay, int nbPredator, int nbRock) {
-		// TODO by Ouamar "Ajuster vitesse des prédateurs" for 10/02/2016
+		// TODO by Ouamar Sais "Factorisation avec SMA" for 10/02/2016
+		// TODO by Ouamar Sais "Ajuster vitesse des prédateurs" for 10/02/2016
 		super(nbRock + nbPredator + 1, nbTours, vitesse, height, width, agentSize, showGrid, equit, toric);
 		this.nbPredator = nbPredator;
 		this.nbRock = nbRock;
@@ -92,7 +92,7 @@ public class SMAPredator extends SMA {
 			try {
 				Thread.sleep(vitesse);
 			} catch (InterruptedException e) {
-				// TODO by Yassine "Gérer l'exception" for 10/02/2016
+				// TODO by Yassine Badache "Gérer l'exception" for 10/02/2016
 				e.printStackTrace();
 			}
 		}

@@ -14,8 +14,8 @@ public abstract class View extends JFrame implements Observer {
 
 	Panel c;
 
-	// TODO by Both "Interface programmable sans arg. commande" for 10/02/2016
 	public View(SMA sma, String name) {
+		// TODO by Ouamar Sais "Interface programmable sans arg. commande" for 10/02/2016
 		c = new Panel(sma);
 		c.sma.addObserver(this);
 		setTitle(name);

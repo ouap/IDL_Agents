@@ -25,8 +25,8 @@ public class Environnement {
 		}
 	}
 
-	// TODO by Ouamar "Gerer isFree() pour wator" for 10/02/2016
 	public boolean isFree(int posX, int posY) {
+		// TODO by Ouamar Sais "Gerer isFree() pour wator" for 10/02/2016
 		return getCell(posX, posY).isEmpty();
 	}
 

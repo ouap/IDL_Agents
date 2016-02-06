@@ -60,6 +60,7 @@ public class Fish extends Agent {
 	private boolean isSurrounded() {
 		for (int x = -1; x < 1; x++) {
 			for (int y = -1; y < 1; y++) {
+				// TODO by Ouamar Sais "Virer les sysout aussi !!" for 10/02/2016
 				// System.out.println(posX+x+"   "+ (posY+y));
 				if (!env.isOutOfBounds(posX + x, posY + y)) {
 					if (env.getCell(posX + x, posY + y).isEmpty()) {
@@ -91,9 +92,9 @@ public class Fish extends Agent {
 		breedTime = time;
 	}
 
-	// TODO by Yassine "Gérer override" for 08/02/2016
 	@Override
 	public void updatePosition(int newX, int newY) {
+		// TODO by Yassine Badache "Gérer override" for 08/02/2016
 		env.getCell(posX, posY).clearWator();
 		if (env.isToric()) {
 			posX = Math.floorMod(newX, env.getWidth());

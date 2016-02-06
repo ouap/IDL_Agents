@@ -41,13 +41,12 @@ public class You extends Agent {
 
 	@Override
 	public void die() {
-		// TODO by Yassine "méthode die()" for 10/02/2016
+		// TODO by Yassine Badache "méthode die()" for 10/02/2016
 	}
 
 	@Override
 	public void updatePosition(int newX, int newY) {
-		// System.out.println("NewPos : + (" + newX + ", "+newY
-		// +")   Direction : "+ dir);
+		// TODO by Ouamar Sais "Virer les Sysout !!!" for 10/02/2016
 		env.getCell(posX, posY).clear();
 		if (env.isToric()) {
 			posX = Math.floorMod(newX, env.getWidth());

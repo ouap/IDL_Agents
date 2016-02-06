@@ -9,11 +9,11 @@ public class MainPredator {
 
 	public static void main(String[] args) throws InterruptedException, GameOverException {
 		if (args.length == 1 && args[0].equals("readme")) {
-			// TODO by Yassine "Afficher readme" for 10/02/2016
+			// TODO by Yassine Badache "Afficher readme" for 10/02/2016
 		}
 
 		else if (args.length != 12) {
-			// TODO by Yassine "Afficher error file" for 10/02/2016
+			// TODO by Yassine Badache "Afficher error file" for 10/02/2016
 		}
 
 		// Paramètre vitesse poursuivants
