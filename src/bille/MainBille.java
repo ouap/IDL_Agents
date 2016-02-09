@@ -6,7 +6,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.stream.Stream;
 
-import Core.View;
+import View.View;
+import hunter.GameOverException;
 
 public class MainBille {
 

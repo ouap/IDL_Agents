@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import bille.GameOverException;
+import hunter.GameOverException;
 import utils.Direction;
 
 public abstract class Agent {

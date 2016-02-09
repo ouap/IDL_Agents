@@ -11,7 +11,7 @@ import org.apache.commons.io.FileUtils;
 
 import Core.Agent;
 import Core.SMA;
-import bille.GameOverException;
+import hunter.GameOverException;
 
 public class SMAWator extends SMA {
 	private int nbFish;

@@ -1,4 +1,4 @@
-package Core;
+package View;
 
 import hunter.EnvironnementHunter;
 import hunter.SMAPredator;
@@ -12,6 +12,8 @@ import java.util.List;
 
 import javax.swing.JPanel;
 
+import Core.Agent;
+import Core.SMA;
 import utils.Direction;
 
 public class Panel extends JPanel {

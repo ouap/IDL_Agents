@@ -6,6 +6,7 @@ import java.util.Random;
 import Core.Agent;
 import Core.Environnement;
 import Core.SMA;
+import hunter.GameOverException;
 
 public class SMABille extends SMA {
 

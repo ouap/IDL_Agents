@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 
-import bille.GameOverException;
+import hunter.GameOverException;
 
 public abstract class SMA extends Observable {
 

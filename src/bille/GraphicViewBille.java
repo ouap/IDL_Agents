@@ -2,7 +2,7 @@ package bille;
 
 import java.awt.Color;
 
-import Core.View;
+import View.View;
 
 public class GraphicViewBille extends View {
 

@@ -1,7 +1,6 @@
 package hunter;
 
-import Core.View;
-import bille.GameOverException;
+import View.View;
 
 public class MainPredator {
 

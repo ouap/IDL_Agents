@@ -1,4 +1,4 @@
-package bille;
+package hunter;
 
 public class GameOverException extends Exception {
 	/**

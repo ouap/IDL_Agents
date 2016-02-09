@@ -2,8 +2,8 @@ package wator;
 
 import java.io.IOException;
 
-import Core.View;
-import bille.GameOverException;
+import View.View;
+import hunter.GameOverException;
 
 public class MainWator {
 

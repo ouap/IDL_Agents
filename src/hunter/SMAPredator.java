@@ -5,7 +5,6 @@ import java.util.Random;
 
 import Core.Agent;
 import Core.SMA;
-import bille.GameOverException;
 
 public class SMAPredator extends SMA {
 	private int nbPredator;

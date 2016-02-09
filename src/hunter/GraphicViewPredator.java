@@ -3,7 +3,7 @@ package hunter;
 import java.awt.Color;
 import java.util.Observable;
 
-import Core.View;
+import View.View;
 
 public class GraphicViewPredator extends View {
 
