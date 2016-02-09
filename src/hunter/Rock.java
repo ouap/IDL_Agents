@@ -1,8 +1,9 @@
-package agents;
-
-import grille.Environnement;
+package hunter;
 
 import java.awt.Color;
+
+import Core.Agent;
+import Core.Environnement;
 
 public class Rock extends Agent {
 

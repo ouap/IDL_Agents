@@ -1,12 +1,11 @@
-package agents;
-
-import grille.Environnement;
-import grille.EnvironnementHunter;
+package hunter;
 
 import java.awt.Color;
 import java.awt.Point;
 import java.util.Random;
 
+import Core.Agent;
+import Core.Environnement;
 import utils.Direction;
 
 public class You extends Agent {

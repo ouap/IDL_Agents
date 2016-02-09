@@ -1,9 +1,9 @@
-package vue;
+package hunter;
 
 import java.awt.Color;
 import java.util.Observable;
 
-import Core.SMAPredator;
+import Core.View;
 
 public class GraphicViewPredator extends View {
 

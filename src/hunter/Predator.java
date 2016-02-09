@@ -1,10 +1,10 @@
-package agents;
-
-import grille.EnvironnementHunter;
+package hunter;
 
 import java.awt.Color;
 import java.awt.Point;
 
+import Core.Agent;
+import bille.GameOverException;
 import utils.Direction;
 
 public class Predator extends Agent {

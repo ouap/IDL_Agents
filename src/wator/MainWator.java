@@ -1,11 +1,9 @@
-package main;
+package wator;
 
 import java.io.IOException;
 
-import vue.GraphicViewWator;
-import vue.View;
-import Core.SMAWator;
-import agents.GameOverException;
+import Core.View;
+import bille.GameOverException;
 
 public class MainWator {
 

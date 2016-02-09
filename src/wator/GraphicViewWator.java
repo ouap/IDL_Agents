@@ -1,9 +1,9 @@
-package vue;
+package wator;
 
 import java.awt.Color;
 import java.util.Observable;
 
-import Core.SMAWator;
+import Core.View;
 
 public class GraphicViewWator extends View{
 

@@ -1,8 +1,6 @@
-package grille;
+package Core;
 
 import java.util.List;
-
-import agents.Agent;
 
 public class Environnement {
 	private Cellule[][] grille;

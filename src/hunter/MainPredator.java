@@ -1,9 +1,7 @@
-package main;
+package hunter;
 
-import vue.GraphicViewPredator;
-import vue.View;
-import Core.SMAPredator;
-import agents.GameOverException;
+import Core.View;
+import bille.GameOverException;
 
 public class MainPredator {
 

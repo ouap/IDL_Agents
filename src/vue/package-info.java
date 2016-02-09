@@ -1,8 +1,0 @@
-/**
- * 
- */
-/**
- * @author YBADACHE
- *
- */
-package vue;

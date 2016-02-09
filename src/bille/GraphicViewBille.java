@@ -1,8 +1,8 @@
-package vue;
+package bille;
 
 import java.awt.Color;
 
-import Core.SMABille;
+import Core.View;
 
 public class GraphicViewBille extends View {
 

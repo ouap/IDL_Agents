@@ -1,12 +1,10 @@
-package vue;
+package Core;
 
 import java.awt.Dimension;
 import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.JFrame;
-
-import Core.SMA;
 
 public abstract class View extends JFrame implements Observer {
 

@@ -1,6 +1,7 @@
-package vue;
+package Core;
 
-import grille.EnvironnementHunter;
+import hunter.EnvironnementHunter;
+import hunter.SMAPredator;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -12,9 +13,6 @@ import java.util.List;
 import javax.swing.JPanel;
 
 import utils.Direction;
-import Core.SMA;
-import Core.SMAPredator;
-import agents.Agent;
 
 public class Panel extends JPanel {
 

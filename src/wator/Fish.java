@@ -1,7 +1,4 @@
-package agents;
-
-import grille.Environnement;
-import grille.EnvironnementWator;
+package wator;
 
 import java.awt.Color;
 import java.awt.Point;
@@ -9,33 +6,29 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import Core.Agent;
 import utils.Direction;
 
-public class Shark extends Agent {
+public class Fish extends Agent {
 	private static int breedTime;
 	private int breed;
 	private boolean alive;
-	private int starveShark;
-	private int starve = 0;
-	private Point fishPos = new Point();
 
-	public Shark(Environnement env, int x, int y, int starveShark) {
+	public Fish(EnvironnementWator env, int x, int y) {
 		super(x, y, env);
-		super.color = Color.BLUE;
-		this.starveShark = starveShark;
+		color = Color.lightGray;
 		breed = 0;
 		alive = true;
 	}
 
 	@Override
 	public void doIt() {
-		// C'est la maure :(
 		if (!alive) {
 			return;
 		}
 
-		if (starve >= starveShark) {
-			die();
+		if (isSurrounded()) {
+			return;
 		}
 
 		// Si on atteint le temps limite :
@@ -47,45 +40,35 @@ public class Shark extends Agent {
 				if (!env.isOutOfBounds(posX + point.x, posY + point.y) && env.getCell(posX + point.x, posY + point.y).isEmpty()) {
 					// On bouge d'abord, après on créé un Shark à la position
 					// précédente
-					// System.out.println("Let's move !");
 					updatePosition(posX + point.x, posY + point.y);
-					Shark newShark = new Shark(env, posX - point.x, posY - point.y, starveShark);
-					env.getCell(posX - point.x, posY - point.y).setAgent(newShark);
-					((EnvironnementWator) env).addAgent(newShark);
+					Fish newFish = new Fish((EnvironnementWator) env, posX - point.x, posY - point.y);
+					env.getCell(posX - point.x, posY - point.y).setAgent(newFish);
+					((EnvironnementWator) env).addAgent(newFish);
 					breed = 0;
-					break;
+					return;
+				}
+			}
+		} else {
+			randomMove();
+		}
+
+		breed++;
+
+	}
+
+	private boolean isSurrounded() {
+		for (int x = -1; x < 1; x++) {
+			for (int y = -1; y < 1; y++) {
+				// TODO by Ouamar Sais "Virer les sysout aussi !!" for 10/02/2016
+				// System.out.println(posX+x+"   "+ (posY+y));
+				if (!env.isOutOfBounds(posX + x, posY + y)) {
+					if (env.getCell(posX + x, posY + y).isEmpty()) {
+						return false;
+					}
 				}
 			}
 		}
-
-		// Si y'a un poisson, on le nique !!
-		if (isFishAround()) {
-			// System.out.println("FIIIISH");
-			env.getCell(fishPos.x, fishPos.y).getAgent().die();
-			updatePosition(fishPos.x, fishPos.y);
-			starve = 0;
-			breed++;
-		}
-
-		// Sinon on bouge au hasard
-		else {
-			starve++;
-			breed++;
-			randomMove();
-		}
-	}
-
-	private boolean isFishAround() {
-
-		List<Point> pointsDir = new ArrayList<Point>(Direction.pointsDir.values());
-		Collections.shuffle(pointsDir);
-		for (Point point : pointsDir) {
-			if (!env.isOutOfBounds(posX + point.x, posY + point.y) && env.getCell(posX + point.x, posY + point.y).getAgent() instanceof Fish) {
-				fishPos.setLocation((posX + point.x), (posY + point.y));
-				return true;
-			}
-		}
-		return false;
+		return true;
 	}
 
 	public boolean isAlive() {
@@ -94,7 +77,7 @@ public class Shark extends Agent {
 
 	@Override
 	public String type() {
-		return "shark";
+		return "fish";
 	}
 
 	@Override
@@ -110,6 +93,7 @@ public class Shark extends Agent {
 
 	@Override
 	public void updatePosition(int newX, int newY) {
+		// TODO by Yassine Badache "Gérer override" for 08/02/2016
 		env.getCell(posX, posY).clearWator();
 		if (env.isToric()) {
 			posX = Math.floorMod(newX, env.getWidth());

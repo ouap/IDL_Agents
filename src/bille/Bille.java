@@ -1,10 +1,10 @@
-package agents;
-
-import grille.Environnement;
+package bille;
 
 import java.awt.Color;
 import java.util.Random;
 
+import Core.Agent;
+import Core.Environnement;
 import utils.Direction;
 
 public class Bille extends Agent {

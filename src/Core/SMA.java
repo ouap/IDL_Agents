@@ -1,13 +1,10 @@
 package Core;
 
-import grille.Environnement;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 
-import agents.Agent;
-import agents.GameOverException;
+import bille.GameOverException;
 
 public abstract class SMA extends Observable {
 
@@ -19,7 +16,7 @@ public abstract class SMA extends Observable {
 	protected int nbAgents;
 	protected int agentSize;
 	protected boolean showGrid;
-	List<Agent> agents = new ArrayList<Agent>();
+	protected List<Agent> agents = new ArrayList<Agent>();
 
 	public SMA(int nbAgents, int nbTours, int vitesse, int height, int width, int agentSize, boolean showGrid, boolean equit, boolean toric) {
 		this.nbAgents = nbAgents;

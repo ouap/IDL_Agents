@@ -1,15 +1,11 @@
-package Core;
-
-import grille.EnvironnementHunter;
+package hunter;
 
 import java.util.Collections;
 import java.util.Random;
 
-import agents.Agent;
-import agents.GameOverException;
-import agents.Predator;
-import agents.Rock;
-import agents.You;
+import Core.Agent;
+import Core.SMA;
+import bille.GameOverException;
 
 public class SMAPredator extends SMA {
 	private int nbPredator;

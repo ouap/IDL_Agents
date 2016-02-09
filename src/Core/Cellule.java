@@ -1,6 +1,4 @@
-package grille;
-
-import agents.Agent;
+package Core;
 
 public class Cellule {
 	public int x;

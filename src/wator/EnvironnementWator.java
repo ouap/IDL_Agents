@@ -1,11 +1,10 @@
-package grille;
+package wator;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import agents.Agent;
-import agents.Fish;
-import agents.Shark;
+import Core.Agent;
+import Core.Environnement;
 
 public class EnvironnementWator extends Environnement {
 

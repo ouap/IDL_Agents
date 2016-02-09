@@ -1,8 +1,9 @@
-package grille;
+package hunter;
 
 import java.util.List;
 
-import agents.Agent;
+import Core.Agent;
+import Core.Environnement;
 
 public class EnvironnementHunter extends Environnement {
 	private int[][] dijkstraTab;

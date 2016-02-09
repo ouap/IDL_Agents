@@ -1,13 +1,11 @@
-package Core;
-
-import grille.Environnement;
+package bille;
 
 import java.util.Collections;
 import java.util.Random;
 
-import agents.Agent;
-import agents.Bille;
-import agents.GameOverException;
+import Core.Agent;
+import Core.Environnement;
+import Core.SMA;
 
 public class SMABille extends SMA {
 

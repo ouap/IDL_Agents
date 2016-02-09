@@ -1,6 +1,4 @@
-package agents;
-
-import grille.Environnement;
+package Core;
 
 import java.awt.Color;
 import java.awt.Point;
@@ -8,13 +6,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import bille.GameOverException;
 import utils.Direction;
 
 public abstract class Agent {
 	protected int posX;
 	protected int posY;
-	Environnement env;
-	Color color;
+	protected Environnement env;
+	protected Color color;
 	protected Direction dir;
 
 	public Agent(int x, int y, Environnement env) {

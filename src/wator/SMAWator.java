@@ -1,6 +1,4 @@
-package Core;
-
-import grille.EnvironnementWator;
+package wator;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,10 +9,9 @@ import java.util.Random;
 
 import org.apache.commons.io.FileUtils;
 
-import agents.Agent;
-import agents.Fish;
-import agents.GameOverException;
-import agents.Shark;
+import Core.Agent;
+import Core.SMA;
+import bille.GameOverException;
 
 public class SMAWator extends SMA {
 	private int nbFish;
