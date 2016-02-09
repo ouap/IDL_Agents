@@ -77,6 +77,7 @@ public class SMAPredator extends SMA {
 			if (equit) {
 				Collections.shuffle(agents);
 			}
+
 			for (Agent a : agents) {
 				if (!(a instanceof Predator)) {
 					a.doIt();
