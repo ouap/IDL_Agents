@@ -21,8 +21,9 @@ public class Predator extends Agent {
 		Point min = null;
 		int minVal = Integer.MAX_VALUE;
 		for (Point p : Direction.pointsDir.values()) {
-			if (isFairPlay && !isFair(p))
+			if (isFairPlay && !isFair(p)) {
 				continue;
+			}
 			if (!(env.isOutOfBounds(posX + p.x, posY + p.y)) && env.getCell(posX + p.x, posY + p.y).getAgent() instanceof You) {
 				env.getCell(posX + p.x, posY + p.y).getAgent().die();
 				throw new GameOverException();
@@ -38,8 +39,9 @@ public class Predator extends Agent {
 
 		// TODO by Yassine Badache "Gérer l'exception, trouver le NPE bug" for 08/02/2016
 		try {
-			if (((EnvironnementHunter) env).getCell(posX + min.x, posY + min.y).isEmpty())
+			if (((EnvironnementHunter) env).getCell(posX + min.x, posY + min.y).isEmpty()) {
 				updatePosition(posX + min.x, posY + min.y);
+			}
 		} catch (NullPointerException e) {
 
 		}
@@ -47,8 +49,9 @@ public class Predator extends Agent {
 
 	private boolean isFair(Point p) {
 		if (Direction.pointsDir.get("NORD_EST").equals(p) || Direction.pointsDir.get("NORD_OUEST").equals(p) || Direction.pointsDir.get("SUD_EST").equals(p)
-				|| Direction.pointsDir.get("SUD_OUEST").equals(p))
+				|| Direction.pointsDir.get("SUD_OUEST").equals(p)) {
 			return false;
+		}
 		return true;
 	}
 

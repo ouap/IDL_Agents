@@ -26,7 +26,7 @@ public class Bille extends Agent {
 		switch (dir) {
 		case NORD:
 			// Si on a pas atteint le mur
-			if (posY - 1 >= 0) {
+			if (!env.isOutOfBounds(posX, posY-1)) {
 				if (env.getCell(posX, posY - 1).isEmpty()) {
 					updatePosition(posX, posY - 1);
 				} else {
@@ -40,7 +40,7 @@ public class Bille extends Agent {
 			break;
 		case NORD_EST:
 			// Si on a pas atteint le mur
-			if (posX + 1 < env.getWidth() && posY - 1 >= 0) {
+			if (!env.isOutOfBounds(posX + 1, posY-1)) {
 				// Si la case ou l'on va est vide
 				if (env.getCell(posX + 1, posY - 1).isEmpty()) {
 					updatePosition(posX + 1, posY - 1);
@@ -73,7 +73,7 @@ public class Bille extends Agent {
 			break;
 		case NORD_OUEST:
 			// Si on a pas atteint le mur
-			if (posX - 1 >= 0 && posY - 1 >= 0) {
+			if (!env.isOutOfBounds(posX - 1, posY-1)) {
 				// Si la case ou l'on va est vide
 				if (env.getCell(posX - 1, posY - 1).isEmpty()) {
 					updatePosition(posX - 1, posY - 1);
@@ -107,7 +107,7 @@ public class Bille extends Agent {
 			break;
 		case EST:
 			// Si on a pas atteint le mur
-			if (posX + 1 < env.getWidth()) {
+			if (!env.isOutOfBounds(posX + 1, posY)) {
 				if (env.getCell(posX + 1, posY).isEmpty()) {
 					updatePosition(posX + 1, posY);
 				} else {
@@ -121,7 +121,7 @@ public class Bille extends Agent {
 			break;
 		case OUEST:
 			// Si on a pas atteint le mur
-			if (posX - 1 >= 0) {
+			if (!env.isOutOfBounds(posX - 1, posY)) {
 				if (env.getCell(posX - 1, posY).isEmpty()) {
 					updatePosition(posX - 1, posY);
 				} else {
@@ -135,7 +135,7 @@ public class Bille extends Agent {
 			break;
 		case SUD_EST:
 			// Si on a pas atteint le mur
-			if (posX + 1 < env.getWidth() && posY + 1 < env.getHeight()) {
+			if (!env.isOutOfBounds(posX + 1, posY+1)) {
 				// Si la case ou l'on va est vide
 				if (env.getCell(posX + 1, posY + 1).isEmpty()) {
 					updatePosition(posX + 1, posY + 1);
@@ -169,7 +169,7 @@ public class Bille extends Agent {
 			break;
 		case SUD_OUEST:
 			// Si on a pas atteint le mur
-			if (posX - 1 >= 0 && posY + 1 < env.getHeight()) {
+			if (!env.isOutOfBounds(posX - 1, posY+1)) {
 				// Si la case ou l'on va est vide
 				if (env.getCell(posX - 1, posY + 1).isEmpty()) {
 					updatePosition(posX - 1, posY + 1);
@@ -203,7 +203,7 @@ public class Bille extends Agent {
 			break;
 		case SUD:
 			// Si on a pas atteint le mur
-			if (posY + 1 < env.getHeight()) {
+			if (!env.isOutOfBounds(posX, posY+1)) {
 				if (env.getCell(posX, posY + 1).isEmpty()) {
 					updatePosition(posX, posY + 1);
 				} else {

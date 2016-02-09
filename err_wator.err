@@ -1,0 +1,19 @@
+Mauvais usage !
+
+- Usage
+java -jar wator.jar NbTours Vitesse Height Width SizeAgent ShowGrid Equit Toric nbFish nbShark starveShark sharkBreedTime fishBreedTime
+
+- Paramètres:
+* NbTours : Nombre de tours pour l'expérience
+* Vitesse : Vitesse entre deux tours (ms) (plus c'est bas, plus ça va vite)
+* Height : Hauteur de la grille, en cases
+* Width : Largeur de la grille, en cases
+* SizeAgent : Taille d'un agent, en pixel
+* ShowGrid : (Booléen) Montrer ou non la grille
+* Equit : (Booléen) Les agents prennent la parole pseudo-équitablement ou non
+* Toric : (Booléen) Environnement torique ou non
+* nbFish : le nombre de poisson au départ
+* nbShark : le nombre de requins au départ
+* starveShark : le nombre de tours après lequel les requins meurent si ils ne mangent pas
+* sharkBreedTime : le nombre de tours après lequel les requins donnent naissance
+* fishBreedTime : le nombre de tours après lequel les poissons donnent naissance

@@ -1,0 +1,18 @@
+Mauvais usage !
+
+- Usage
+java -jar hunter.jar NbTours Vitesse Height Width SizeAgent ShowGrid Equit showNumbers isFairPlay nbPredator nbRock
+
+- Paramètres:
+* NbTours : Nombre de tours pour l'expérience
+* Vitesse : Vitesse entre deux tours (ms) (plus c'est bas, plus ça va vite)
+* Height : Hauteur de la grille, en cases
+* Width : Largeur de la grille, en cases
+* SizeAgent : Taille d'un agent, en pixel
+* ShowGrid : (Booléen) Montrer ou non la grille
+* Equit : (Booléen) Les agents prennent la parole pseudo-équitablement ou non
+* showNumbers : (Booléen) Afficher les valeur du calcul de dijkstra dans les cases
+* isFairPlay : (Booléen) Interdire les mouvements en diagonale des prédators ou non
+* nbPredator : le nombre de prédator
+* nbRock : le nombre de rochers
+* ratio : ratio pour d'action des predator

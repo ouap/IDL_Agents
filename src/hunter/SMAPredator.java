@@ -12,16 +12,16 @@ public class SMAPredator extends SMA {
 	public boolean showNumbers;
 	public boolean isFairPlay;
 	private You you;
+	private int ratio;
 
-	public SMAPredator(int nbTours, int vitesse, int height, int width, int agentSize, boolean showGrid, boolean equit, boolean toric, boolean showNumbers,
-			boolean isFairPlay, int nbPredator, int nbRock) {
-		// TODO by Ouamar Sais "Factorisation avec SMA" for 10/02/2016
-		// TODO by Ouamar Sais "Ajuster vitesse des prédateurs" for 10/02/2016
-		super(nbRock + nbPredator + 1, nbTours, vitesse, height, width, agentSize, showGrid, equit, toric);
+	public SMAPredator(int nbTours, int vitesse, int height, int width, int agentSize, boolean showGrid, boolean equit, boolean showNumbers,
+			boolean isFairPlay, int nbPredator, int nbRock, int ratio) {
+		super(nbRock + nbPredator + 1, nbTours, vitesse, height, width, agentSize, showGrid, equit, false);
 		this.nbPredator = nbPredator;
 		this.nbRock = nbRock;
 		this.showNumbers = showNumbers;
 		this.isFairPlay = isFairPlay;
+		this.ratio = ratio;
 		super.env = new EnvironnementHunter(width, height, agents, toric);
 		init();
 	}
@@ -77,9 +77,14 @@ public class SMAPredator extends SMA {
 			if (equit) {
 				Collections.shuffle(agents);
 			}
-
 			for (Agent a : agents) {
-				a.doIt();
+				if (!(a instanceof Predator)) {
+					a.doIt();
+				}else {
+					if (Math.floorMod(i, ratio) == 0) {
+						a.doIt();
+					}
+				}
 			}
 
 			setChanged();

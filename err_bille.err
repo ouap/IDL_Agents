@@ -1,7 +1,7 @@
-Mauvais usage ! (Entrez 'java -jar agents.jar readme pour accéder au readme)
+Mauvais usage ! (Entrez 'java -jar bille.jar readme pour accéder au readme)
 
 - Usage
-java -jar agents.jar NbAgents NbTours Vitesse Height Width SizeAgent ShowGrid Equit
+java -jar bille.jar NbAgents NbTours Vitesse Height Width SizeAgent ShowGrid Equit
 
 - Paramètres:
 * NbAgents : Nombre d'agents sur la carte au démarrage
@@ -12,3 +12,4 @@ java -jar agents.jar NbAgents NbTours Vitesse Height Width SizeAgent ShowGrid Eq
 * SizeAgent : Taille d'un agent, en pixel
 * ShowGrid : (Booléen) Montrer ou non la grille
 * Equit : (Booléen) Les agents prennent la parole pseudo-équitablement ou non
+* Toric : (Booléen) Environnement torique ou non
